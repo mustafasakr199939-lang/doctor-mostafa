@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>إدارة عيادة د. أشرف محمد فولي</title>
+<script src="clinic-data.js"></script>
+<style>
+*{box-sizing:border-box;font-family:system-ui,-apple-system,sans-serif;margin:0;padding:0}
+body{background:#0f172a;color:#f8fafc;padding:15px;padding-bottom:50px}
+.login-box{max-width:360px;margin:80px auto;background:#1e293b;padding:25px;border-radius:20px;text-align:center;border:1px solid #334155}
+.login-box h2{color:#38bdf8;margin-bottom:15px;font-size:18px}
+input,select,textarea{width:100%;padding:11px;border-radius:10px;border:1px solid #334155;background:#0f172a;color:#fff;font-size:13px;margin-bottom:10px}
+.btn{width:100%;background:#0d9488;color:#fff;border:none;padding:12px;border-radius:10px;font-weight:bold;font-size:14px;cursor:pointer}
+.app{display:none;max-width:500px;margin:0 auto}
+.header{display:flex;justify-content:space-between;align-items:center;background:#1e293b;padding:14px;border-radius:16px;margin-bottom:15px;border-right:4px solid #d97706}
+.header h1{font-size:16px;color:#fde68a}
+.back-btn{background:#334155;color:#fff;text-decoration:none;padding:6px 12px;border-radius:8px;font-size:11px}
+.card{background:#1e293b;padding:16px;border-radius:16px;margin-bottom:15px;border:1px solid #334155}
+.card h3{font-size:14px;color:#38bdf8;margin-bottom:10px;border-bottom:1px solid #334155;padding-bottom:6px}
+.q-item{background:#0f172a;padding:10px;border-radius:10px;display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;font-size:13px}
+.q-actions{display:flex;gap:5px}
+.call-wa{background:#10b981;color:#fff;border:none;padding:5px 8px;border-radius:6px;font-size:11px;cursor:pointer;font-weight:bold}
+.done-btn{background:#ef4444;color:#fff;border:none;padding:5px 8px;border-radius:6px;font-size:11px;cursor:pointer}
+.tpl-bar{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px}
+.tpl-btn{background:#334155;color:#fde68a;border:1px solid #475569;padding:5px 10px;border-radius:8px;font-size:11px;cursor:pointer}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.total-box{background:#0f172a;padding:12px;border-radius:10px;text-align:center;border:1px solid #10b981;margin-top:6px}
+</style>
+</head>
+<body>
+
+<div class="login-box" id="loginScreen">
+  <h2>🔐 دخول غرفة تحكم د. أشرف</h2>
+  <input type="password" id="pinInput" placeholder="أدخل الرقم السري (1234)...">
+  <button class="btn" onclick="checkPin()">دخول اللوحة</button>
+</div>
+
+<div class="app" id="adminApp">
+  <div class="header">
+    <div>
+      <h1>لوحة إدارة عيادة د. أشرف فولي</h1>
+      <span style="font-size:11px;color:#94a3b8">تحكم كامل في الدور، الروشتات، والحسابات</span>
+    </div>
+    <a href="index.html" class="back-btn">واجهة المرضى ↗</a>
+  </div>
+
+  <div class="card">
+    <h3>1️⃣ تحديث شاشة العيادة والدور</h3>
+    <select id="dSt">
+      <option>🟢 مفتوح الآن</option>
+      <option>🟡 جاري الكشف</option>
+      <option>🟠 استراحة قصيرة</option>
+      <option>🔴 مغلق حالياً</option>
+    </select>
+    <input type="text" id="dQu" placeholder="رقم الدور الحالي (مثال: رقم #5)">
+    <button class="btn" onclick="saveStatus()">حفظ وتحديث الواجهة ✔</button>
+  </div>
+
+  <div class="card">
+    <h3>2️⃣ إدارة قائمة الانتظار (مناداة بضغطة زر)</h3>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px">
+      <input type="text" id="qName" placeholder="اسم المريض...">
+      <input type="tel" id="qPhone" placeholder="موبايل المريض (اختياري)...">
+    </div>
+    <button class="btn" onclick="addPatient()" style="margin-bottom:12px">+ إضافة مريض للدور</button>
+    <div id="queueList"></div>
+  </div>
+
+  <div class="card">
+    <h3>3️⃣ الروشتة الإلكترونية السريعة (قوالب جاهزة)</h3>
+    <div class="tpl-bar" id="tplContainer"></div>
+    <input type="text" id="rxName" placeholder="اسم المريض...">
+    <input type="tel" id="rxPhone" placeholder="رقم واتساب المريض...">
+    <textarea id="rxBody" rows="4" placeholder="اكتب الأدوية أو اختر قالب جاهز من فوق..."></textarea>
+    <button class="btn" onclick="sendRx()">إرسال الروشتة للمريض واتساب 💊</button>
+  </div>
+
+  <div class="card">
+    <h3>4️⃣ حاسبة إيرادات العيادة اليومية</h3>
+    <div class="grid-3">
+      <div><label style="font-size:11px">كشف (100 ج)</label><input type="number" id="n1" value="0" oninput="calcTotal()"></div>
+      <div><label style="font-size:11px">حساسية/حقن (20 ج)</label><input type="number" id="n2" value="0" oninput="calcTotal()"></div>
+      <div><label style="font-size:11px">كانيولا (30 ج)</label><input type="number" id="n3" value="0" oninput="calcTotal()"></div>
+    </div>
+    <div class="total-box">إجمالي دخل اليوم: <b id="dayTotal" style="color:#10b981;font-size:20px">0 جنيه</b></div>
+  </div>
+</div>
+
+<script>
+const PIN = (typeof CLINIC_CONFIG !== 'undefined') ? CLINIC_CONFIG.doctorPin : "1234";
+
+function checkPin(){
+  if(document.getElementById('pinInput').value === PIN){
+    document.getElementById('loginScreen').style.display = 'none';
+    document.getElementById('adminApp').style.display = 'block';
+    initAdmin();
+  } else { alert("الرقم السري غير صحيح"); }
+}
+
+function initAdmin(){
+  renderQueue();
+  if(typeof CLINIC_CONFIG !== 'undefined' && CLINIC_CONFIG.rxTemplates){
+    document.getElementById('tplContainer').innerHTML = CLINIC_CONFIG.rxTemplates.map((t, i) => 
+      `<button class="tpl-btn" onclick="useTpl(${i})">📋 ${t.title}</button>`
+    ).join('');
+  }
+}
+
+function useTpl(idx){
+  document.getElementById('rxBody').value = CLINIC_CONFIG.rxTemplates[idx].meds;
+}
+
+function saveStatus(){
+  localStorage.setItem('st_fouly', document.getElementById('dSt').value);
+  let q = document.getElementById('dQu').value.trim();
+  if(q) localStorage.setItem('qu_fouly', q);
+  alert("تم تحديث حالة العيادة والدور بنجاح!");
+}
+
+function addPatient(){
+  let name = document.getElementById('qName').value.trim();
+  let phone = document.getElementById('qPhone').value.trim();
+  if(!name) return;
+  let list = JSON.parse(localStorage.getItem('fouly_q_v3') || "[]");
+  list.push({name, phone});
+  localStorage.setItem('fouly_q_v3', JSON.stringify(list));
+  document.getElementById('qName').value = "";
+  document.getElementById('qPhone').value = "";
+  renderQueue();
+}
+
+function renderQueue(){
+  let list = JSON.parse(localStorage.getItem('fouly_q_v3') || "[]");
+  document.getElementById('queueList').innerHTML = list.map((p, i) => `
+    <div class="q-item">
+      <span><b>#${i+1}</b> ${p.name}</span>
+      <div class="q-actions">
+        ${p.phone ? `<button class="call-wa" onclick="notifyTurn('${p.name}','${p.phone}')">نادي واتساب 📲</button>` : ''}
+        <button class="done-btn" onclick="removePatient(${i})">تم ✔</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+function notifyTurn(name, phone){
+  if(phone.startsWith("0")) phone = "2" + phone;
+  let msg = `أهلاً أ/ ${name}، دورك اقترب في *عيادة د. أشرف محمد فولي*. يرجى التوجه للاستقبال.`;
+  window.open(`https://wa.me{phone}?text=${encodeURIComponent(msg)}`, '_blank');
+}
+
+function removePatient(i){
+  let list = JSON.parse(localStorage.getItem('fouly_q_v3') || "[]");
+  list.splice(i, 1);
+  localStorage.setItem('fouly_q_v3', JSON.stringify(list));
+  renderQueue();
+}
+
+function sendRx(){
+  let name = document.getElementById('rxName').value.trim();
+  let phone = document.getElementById('rxPhone').value.trim();
+  let body = document.getElementById('rxBody').value.trim();
+  if(!name || !body){ alert("اكتب اسم المريض والعلاج"); return; }
+  if(phone.startsWith("0")) phone = "2" + phone;
+  let msg = `*روشتة إلكترونية - عيادة د. أشرف محمد فولي* 🩺\n• *المريض:* ${name}\n• *العلاج:*\n${body}\n\n_مع تمنياتنا بالشفاء العاجل_`;
+  window.open(phone ? `https://wa.me{phone}?text=${encodeURIComponent(msg)}` : `https://wa.me{encodeURIComponent(msg)}`, '_blank');
+}
+
+function calcTotal(){
+  let a = (parseInt(document.getElementById('n1').value)||0) * 100;
+  let b = (parseInt(document.getElementById('n2').value)||0) * 20;
+  let c = (parseInt(document.getElementById('n3').value)||0) * 30;
+  document.getElementById('dayTotal').innerText = (a + b + c) + " جنيه";
+}
+</script>
+</body>
+</html>
