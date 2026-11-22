@@ -4,141 +4,165 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>عيادة د. أشرف محمد فولي | البوابة الطبية الذكية</title>
-<script src="clinic-data.js"></script>
 <style>
-*{box-sizing:border-box;font-family:system-ui,-apple-system,sans-serif;margin:0;padding:0}
-body{background:#eef2f6;color:#1e293b;padding-bottom:40px}
-.top{background:#05192d;color:#fde68a;font-size:12px;padding:8px;text-align:center;font-weight:bold;border-bottom:2px solid #d97706}
-.head{background:linear-gradient(135deg,#07223b,#0e4d82);color:#fff;padding:25px 15px 55px;text-align:center;border-radius:0 0 32px 32px;box-shadow:0 8px 25px rgba(7,34,59,.2)}
-.gold-tag{display:inline-block;background:rgba(217,119,6,.2);border:1px solid #f59e0b;color:#fde68a;padding:3px 12px;border-radius:20px;font-size:11px;font-weight:bold;margin-bottom:8px}
-.head h1{font-size:24px;margin-bottom:4px;font-weight:900}
-.head p{font-size:13px;opacity:.9}
-.equip-bar{display:flex;justify-content:center;gap:6px;margin-top:12px;flex-wrap:wrap}
-.eq-badge{background:rgba(13,148,136,.25);border:1px solid #2dd4bf;color:#ccfbf1;padding:4px 10px;border-radius:12px;font-size:11px;font-weight:bold}
-.calls{margin-top:12px;display:flex;justify-content:center;gap:8px;flex-wrap:wrap}
-.calls a{background:rgba(255,255,255,.15);color:#fff;text-decoration:none;padding:6px 14px;border-radius:20px;font-size:12px;font-weight:bold}
-.bar{background:#fff;width:92%;max-width:460px;margin:-32px auto 15px;padding:12px;border-radius:16px;box-shadow:0 5px 15px rgba(0,0,0,.08);display:grid;grid-template-columns:repeat(3,1fr);text-align:center;border-top:4px solid #0d9488}
-.bar div span{display:block;font-size:11px;color:#64748b}
-.bar div b{font-size:14px;color:#07223b}
-.wrap{width:92%;max-width:460px;margin:0 auto}
-.ticket{background:#ecfdf5;border:1.5px solid #10b981;padding:14px;border-radius:14px;margin-bottom:15px;display:none}
-.ticket h4{color:#065f46;font-size:14px;margin-bottom:5px}
-.ticket p{font-size:12px;color:#047857;line-height:1.6}
-.ticket-actions{margin-top:10px;padding-top:8px;border-top:1px dashed #10b981;display:flex;justify-content:space-between;align-items:center}
-.edit-15-btn{background:#d97706;color:#fff;border:none;padding:6px 12px;border-radius:8px;font-size:11px;font-weight:bold;cursor:pointer}
-.tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:15px}
-.tab{background:#fff;border:1.5px solid #cbd5e1;padding:12px 6px;border-radius:14px;text-align:center;cursor:pointer;transition:.2s}
-.tab.active{border-color:#0d9488;background:#f0fdfa;transform:translateY(-2px)}
-.tab b{display:block;font-size:13px;color:#07223b}
-.tab small{font-size:10px;color:#64748b}
-.box{background:#fff;padding:18px;border-radius:18px;box-shadow:0 4px 15px rgba(0,0,0,.05);display:none}
-.box.active{display:block}
-.box h2{font-size:16px;color:#07223b;margin-bottom:12px;border-bottom:1px solid #e2e8f0;padding-bottom:8px}
-.cols{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px}
-.col{border:1.5px solid #cbd5e1;padding:10px;border-radius:10px;cursor:pointer;background:#f8fafc}
-.col.active{border-color:#0d9488;background:#f0fdfa}
-.col b{display:block;font-size:12px;color:#07223b}
-.col span{display:block;font-size:12px;color:#0d9488;font-weight:bold}
-.col small{font-size:10px;color:#64748b}
-label{display:block;font-size:12px;font-weight:bold;margin:8px 0 4px}
-input,textarea{width:100%;padding:10px;border:1.5px solid #cbd5e1;border-radius:10px;font-size:13px;background:#f8fafc}
-.slots{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:12px}
-.slot{border:1.5px solid #cbd5e1;padding:8px 2px;text-align:center;border-radius:8px;font-size:11px;font-weight:bold;cursor:pointer}
-.slot.active{background:#07223b;color:#fff;border-color:#07223b}
-.btn{width:100%;background:#0d9488;color:#fff;border:none;padding:12px;border-radius:12px;font-size:14px;font-weight:bold;cursor:pointer;margin-top:8px}
-.qgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
-.qbtn{background:#e0f2fe;color:#0369a1;border:1px solid #bae6fd;padding:10px 8px;border-radius:10px;font-size:12px;font-weight:bold;cursor:pointer;text-align:right}
-.qbtn.urgent{background:#fef2f2;color:#b91c1c;border-color:#fecaca}
-.ans{background:#f8fafc;padding:14px;border-radius:12px;font-size:13px;line-height:1.7;border-right:4px solid #0d9488;border:1px solid #e2e8f0;border-right-width:4px}
-.row{display:flex;justify-content:space-between;align-items:center;padding:11px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;margin-bottom:8px;font-size:13px}
-.row button{background:#0d9488;color:#fff;border:none;padding:6px 12px;border-radius:8px;font-size:11px;font-weight:bold;cursor:pointer}
-.features-box{background:linear-gradient(135deg,#07223b,#0f385e);color:#fff;padding:14px;border-radius:16px;margin-top:15px}
-.features-box h3{font-size:14px;color:#fde68a;margin-bottom:8px}
-.feat-item{font-size:12px;margin-bottom:6px;color:#e2e8f0}
-.doc-link{display:block;text-align:center;margin-top:20px}
-.doc-link a{display:inline-block;background:#07223b;color:#fde68a;border:1px solid #d97706;padding:8px 18px;border-radius:20px;font-size:12px;font-weight:bold;text-decoration:none}
+*{box-sizing:border-box;font-family:system-ui,-apple-system,sans-serif;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{background:#eef2f6;color:#1e293b;padding-bottom:85px}
+.top-strip{background:#041526;color:#fde68a;font-size:11px;padding:7px;text-align:center;font-weight:bold;border-bottom:1.5px solid #d97706}
+
+/* الهيدر */
+.hero{background:linear-gradient(145deg,#07223b,#0e4d82);color:#fff;padding:22px 16px 50px;text-align:center;border-radius:0 0 30px 30px;box-shadow:0 8px 25px rgba(7,34,59,.22)}
+.tag-gold{display:inline-block;background:rgba(217,119,6,.22);border:1px solid #f59e0b;color:#fde68a;padding:3px 12px;border-radius:20px;font-size:11px;font-weight:bold;margin-bottom:6px}
+.hero h1{font-size:23px;font-weight:900;margin-bottom:4px}
+.hero p{font-size:12px;color:#cbd5e1}
+.badges{display:flex;justify-content:center;gap:6px;margin-top:10px;flex-wrap:wrap}
+.badge{background:rgba(13,148,136,.28);border:1px solid #2dd4bf;color:#ccfbf1;padding:3px 9px;border-radius:10px;font-size:10px;font-weight:bold}
+.call-row{margin-top:12px;display:flex;justify-content:center;gap:8px}
+.call-row a{background:rgba(255,255,255,.15);color:#fff;text-decoration:none;padding:6px 14px;border-radius:20px;font-size:12px;font-weight:bold}
+
+/* شريط الحالة المباشر */
+.live-bar{background:#fff;width:92%;max-width:480px;margin:-30px auto 16px;padding:12px;border-radius:16px;box-shadow:0 6px 18px rgba(0,0,0,.08);display:grid;grid-template-columns:repeat(3,1fr);text-align:center;border-top:4px solid #0d9488}
+.live-bar div span{display:block;font-size:10px;color:#64748b}
+.live-bar div b{font-size:13px;color:#07223b}
+
+.container{width:92%;max-width:480px;margin:0 auto}
+
+/* الشاشات المستقلة */
+.screen{display:none;animation:fade .2s ease}
+.screen.active{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+
+/* كروت الرئيسية */
+.menu-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:15px}
+.m-card{background:#fff;padding:18px 12px;border-radius:18px;text-align:center;box-shadow:0 4px 12px rgba(0,0,0,.04);border:1.5px solid #e2e8f0;cursor:pointer;transition:.15s}
+.m-card:active{transform:scale(.97)}
+.m-card.highlight{background:linear-gradient(135deg,#0d9488,#0f766e);color:#fff;border:none}
+.m-card.highlight b,.m-card.highlight small{color:#fff}
+.m-card .ico{font-size:28px;display:block;margin-bottom:6px}
+.m-card b{display:block;font-size:14px;color:#07223b}
+.m-card small{font-size:11px;color:#64748b}
+
+/* تذكرة الحجز */
+.ticket-card{background:linear-gradient(135deg,#ecfdf5,#d1fae5);border:1.5px solid #10b981;padding:14px;border-radius:16px;margin-bottom:15px;display:none}
+.ticket-card h4{color:#065f46;font-size:14px;margin-bottom:4px}
+.ticket-card p{font-size:12px;color:#047857;line-height:1.6}
+.t-foot{margin-top:8px;padding-top:8px;border-top:1px dashed #10b981;display:flex;justify-content:space-between;align-items:center}
+.t-edit-btn{background:#d97706;color:#fff;border:none;padding:5px 10px;border-radius:8px;font-size:11px;font-weight:bold;cursor:pointer}
+
+/* صفحة الحجز المتكاملة */
+.panel{background:#fff;padding:18px;border-radius:20px;box-shadow:0 4px 16px rgba(0,0,0,.05);margin-bottom:15px}
+.panel-title{font-size:16px;font-weight:900;color:#07223b;margin-bottom:12px;padding-bottom:8px;border-bottom:1.5px solid #f1f5f9;display:flex;justify-content:space-between;align-items:center}
+.step-lbl{display:block;font-size:12px;font-weight:800;color:#07223b;margin:12px 0 6px}
+
+.srv-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.srv-opt{border:1.5px solid #cbd5e1;padding:10px;border-radius:12px;background:#f8fafc;cursor:pointer;position:relative}
+.srv-opt.selected{border-color:#0d9488;background:#f0fdfa}
+.srv-opt.selected::after{content:"✔";position:absolute;top:8px;left:8px;background:#0d9488;color:#fff;width:18px;height:18px;border-radius:50%;font-size:10px;display:flex;align-items:center;justify-content:center}
+.srv-opt b{display:block;font-size:12px;color:#07223b}
+.srv-opt span{display:block;font-size:12px;color:#0d9488;font-weight:bold;margin:2px 0}
+.srv-opt small{font-size:10px;color:#64748b}
+
+.day-pills{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:8px}
+.day-pill{border:1.5px solid #cbd5e1;padding:8px 4px;border-radius:10px;text-align:center;font-size:11px;font-weight:bold;cursor:pointer;background:#fff}
+.day-pill.selected{background:#07223b;color:#fff;border-color:#07223b}
+
+.time-pills{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.time-pill{border:1.5px solid #cbd5e1;padding:9px 2px;border-radius:10px;text-align:center;font-size:11px;font-weight:bold;cursor:pointer;background:#fff}
+.time-pill.selected{background:#0d9488;color:#fff;border-color:#0d9488}
+
+input,select,textarea{width:100%;padding:11px;border:1.5px solid #cbd5e1;border-radius:12px;font-size:13px;background:#f8fafc;margin-bottom:8px;outline:none}
+input:focus,textarea:focus{border-color:#0d9488;background:#fff}
+
+.submit-btn{width:100%;background:linear-gradient(135deg,#0d9488,#0e4d82);color:#fff;border:none;padding:14px;border-radius:14px;font-size:15px;font-weight:800;cursor:pointer;margin-top:8px;box-shadow:0 5px 15px rgba(13,148,136,.25)}
+
+/* شاشة الخدمات السريعة المستقلة */
+.fast-card{background:#f8fafc;border:1.5px solid #e2e8f0;border-radius:14px;padding:12px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center}
+.fast-info b{display:block;font-size:14px;color:#07223b}
+.fast-info small{display:block;font-size:11px;color:#64748b;margin-top:2px}
+.fast-info span{display:inline-block;background:#ccfbf1;color:#0f766e;font-size:11px;font-weight:bold;padding:2px 8px;border-radius:6px;margin-top:4px}
+.fast-act{background:#07223b;color:#fde68a;border:none;padding:9px 14px;border-radius:10px;font-size:12px;font-weight:bold;cursor:pointer;white-space:nowrap}
+
+/* الاستفسارات */
+.faq-ans{background:#f0fdfa;border-right:4px solid #0d9488;padding:14px;border-radius:12px;font-size:13px;line-height:1.7;margin-bottom:12px;border:1px solid #ccfbf1;border-right-width:4px}
+.faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.faq-btn{background:#fff;border:1.5px solid #cbd5e1;color:#07223b;padding:11px 8px;border-radius:12px;font-size:12px;font-weight:bold;cursor:pointer;text-align:right}
+.faq-btn.red{border-color:#fecaca;background:#fef2f2;color:#b91c1c}
+
+/* لوحة الدكتور */
+.doc-box{background:#0f172a;color:#fff;padding:16px;border-radius:18px;margin-top:15px;border:1.5px solid #d97706}
+.doc-box h3{color:#fde68a;font-size:15px;margin-bottom:10px;text-align:center}
+.doc-box input,.doc-box select,.doc-box textarea{background:#1e293b;color:#fff;border-color:#334155}
+.q-row{background:#1e293b;padding:8px 10px;border-radius:8px;display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;font-size:12px}
+
+/* شريط التنقل السفلي الثابت (مثل تطبيقات الموبايل) */
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1.5px solid #e2e8f0;display:grid;grid-template-columns:repeat(4,1fr);padding:6px 0;box-shadow:0 -4px 15px rgba(0,0,0,.06);z-index:999}
+.nav-item{text-align:center;cursor:pointer;color:#64748b;font-size:10px;font-weight:bold;padding:4px 0}
+.nav-item span{display:block;font-size:18px;margin-bottom:2px}
+.nav-item.active{color:#0d9488}
 </style>
 </head>
 <body>
 
-<div class="top">🏥 عيادة د. أشرف محمد فولي — وحدة سونار وأشعة تلفزيونية | رسم قلب ECG | حجز مسبق</div>
+<div class="top-strip">🏥 عيادة د. أشرف محمد فولي — وحدة سونار وأشعة تلفزيونية | رسم قلب ECG | حجز مسبق</div>
 
-<div class="head">
-  <div class="gold-tag">مركز التشخيص المتكامل والرعاية الطبية</div>
+<div class="hero">
+  <div class="tag-gold">مركز التشخيص المتكامل والرعاية الطبية</div>
   <h1>عيادة د. أشرف محمد فولي</h1>
   <p>تشخيص دقيق بأحدث أجهزة السونار ورسم القلب الرقمي ECG</p>
-  <div class="equip-bar">
-    <span class="eq-badge">📡 أشعة تلفزيونية وسونار</span>
-    <span class="eq-badge">💓 رسم قلب ECG</span>
-    <span class="eq-badge">🗂️ ملف طبي رقمي</span>
+  <div class="badges">
+    <span class="badge">📡 أشعة تلفزيونية وسونار</span>
+    <span class="badge">💓 رسم قلب ECG</span>
+    <span class="badge">⚡ خدمات تمريضية فورية</span>
   </div>
-  <div class="calls">
+  <div class="call-row">
     <a href="tel:01275646204">📞 01275646204</a>
     <a href="tel:01279049081">📞 01279049081</a>
   </div>
 </div>
 
-<div class="bar">
+<div class="live-bar">
   <div><span>حالة العيادة</span><b id="stDisp">🟢 مفتوح الآن</b></div>
   <div><span>الدور الحالي</span><b id="quDisp">رقم #1</b></div>
   <div><span>سعر الكشف</span><b>100 جنيه</b></div>
 </div>
 
-<div class="wrap">
-  <div class="ticket" id="tBox">
+<div class="container">
+
+  <!-- تذكرة الحجز النشطة (تظهر في كل الشاشات لو المريض حجز) -->
+  <div class="ticket-card" id="tBox">
     <h4>🎟️ تذكرة حجزك المسبق المؤكدة</h4>
     <p id="tText"></p>
-    <div class="ticket-actions" id="tActions"></div>
+    <div class="t-foot" id="tActions"></div>
   </div>
 
-  <div class="tabs">
-    <div class="tab active" onclick="openTab('b1',this)"><b>📅 الحجز المسبق</b><small>سجل بيانات حجزك</small></div>
-    <div class="tab" onclick="openTab('b3',this)"><b>🤖 الاستفسارات</b><small>الأجهزة والمواعيد</small></div>
-    <div class="tab" onclick="openTab('b4',this)"><b>⚡ خدمات سريعة</b><small>حساسية، كانيولا، حقن</small></div>
-  </div>
-
-  <div id="b1" class="box active">
-    <h2>📅 تسجيل بيانات الحجز المسبق</h2>
-    <label>1. اختر نوع الكشف أو الفحص:</label>
-    <div class="cols">
-      <div class="col active" onclick="setSrv(this,'كشف طبي','100 جنيه')"><b>🩺 كشف طبي</b><span>100 جنيه</span><small>فحص وتشخيص شامل</small></div>
-      <div class="col" onclick="setSrv(this,'كشف + سونار','أشعة تلفزيونية')"><b>📡 سونار وأشعة</b><span>أشعة تلفزيونية</span><small>تشخيص دقيق فوري</small></div>
-      <div class="col" onclick="setSrv(this,'رسم قلب ECG','تخطيط قلب')"><b>💓 رسم قلب ECG</b><span>تخطيط قلب</span><small>جهاز رقمي حديث</small></div>
-      <div class="col" onclick="setSrv(this,'استشارة ومتابعة','مجاناً')"><b>📋 استشارة</b><span>مجاناً</span><small>خلال 10 أيام من الكشف</small></div>
+  <!-- الشاشة 1: الرئيسية -->
+  <div id="scrHome" class="screen active">
+    <div class="menu-grid">
+      <div class="m-card highlight" onclick="goScreen('scrBook', 1)">
+        <span class="ico">📅</span>
+        <b>احجز موعدك الآن</b>
+        <small>كشف، سونار، رسم قلب</small>
+      </div>
+      <div class="m-card" onclick="goScreen('scrFast', 2)">
+        <span class="ico">⚡</span>
+        <b>الخدمات السريعة</b>
+        <small>حقن، حساسية، كانيولا</small>
+      </div>
+      <div class="m-card" onclick="goScreen('scrFaq', 3)">
+        <span class="ico">🤖</span>
+        <b>الاستفسارات</b>
+        <small>المواعيد والأجهزة</small>
+      </div>
+      <div class="m-card" onclick="sendWA('السلام عليكم يا أستاذ محمود، عايز أستفسر عن الدور الحالي في عيادة د. أشرف.')">
+        <span class="ico">💬</span>
+        <b>واتساب الاستقبال</b>
+        <small>تواصل مباشر مع أ. محمود</small>
+      </div>
     </div>
-    <label>2. بيانات المريض:</label>
-    <input type="text" id="pName" placeholder="اكتب اسم المريض بالكامل..." style="margin-bottom:8px">
-    <input type="tel" id="pPhone" placeholder="رقم الموبايل (واتساب للتأكيد)...">
-    <label>3. اختر التاريخ والفترة المناسبة:</label>
-    <input type="date" id="pDate" style="margin-bottom:8px">
-    <div class="slots">
-      <div class="slot active" onclick="setTime(this,'6:00 - 7:30 م')">6:00 - 7:30 م</div>
-      <div class="slot" onclick="setTime(this,'7:30 - 9:00 م')">7:30 - 9:00 م</div>
-      <div class="slot" onclick="setTime(this,'9:00 - 11:00 م')">9:00 - 11:00 م</div>
-    </div>
-    <button class="btn" onclick="bookNow()">تأكيد الحجز وإرسال لمحمود 🎟️</button>
-    <p style="font-size:11px;color:#64748b;text-align:center;margin-top:8px">يُسمح بتعديل أو إلغاء الحجز خلال أول 15 دقيقة فقط من التسجيل.</p>
-  </div>
 
-  <div id="b3" class="box">
-    <h2>🤖 الاستفسارات ومعلومات العيادة</h2>
-    <div class="ans" id="botOut">أهلاً بك في عيادة د. أشرف محمد فولي. اختر سؤالك بالأسفل لمعرفة التفاصيل كاملة:</div>
-    <div class="qgrid">
-      <button class="qbtn" onclick="bot('p')">💰 الكشف والوحدات</button>
-      <button class="qbtn" onclick="bot('eq')">📡 الأجهزة المتاحة</button>
-      <button class="qbtn" onclick="bot('h')">⏰ مواعيد تواجد الدكتور</button>
-      <button class="qbtn urgent" onclick="bot('em')">🚨 الحالات المستعجلة</button>
-      <button class="qbtn" style="grid-column:1/-1;text-align:center" onclick="bot('c')">📞 أرقام التواصل والاستقبال</button>
-    </div>
-  </div>
+    <div class="panel" style="background:linear-gradient(135deg,#07223b,#0f385e);color:#fff">
+      <div style="font-size:14px;font-weight:bold;color:#fde68a;margin-bottom:8px">✨ إمكانيات وتجهيزات العيادة</div>
+      <p style="font-size:12px;line-height:1.8;color:#e2e8f0">
+        • <b>وحدة سونار وأشعة تلفزيونية</b> للتشخيص الفوري أثناء الكشف.<br>
+        • <b>جهاز رسم قلب رقمي (ECG)</b> لمتابعة كفاءة القلب بدقة عالية.<br>
 
-  <div id="b4" class="box">
-    <h2>⚡ وحدة الخدمات الطبية السريعة</h2>
-    <p style="font-size:12px;color:#64748b;margin-bottom:10px">اختر الخدمة لإبلاغ الاستقبال وتجهيزها فوراً بدون انتظار:</p>
-    <div class="row"><span>💉 <b>اختبار حساسية</b></span><button onclick="quickWA('طلب عمل اختبار حساسية (20 جنيه) بالعيادة.')">طلب (20 ج.م)</button></div>
-    <div class="row"><span>🩹 <b>تركيب كانيولا</b></span><button onclick="quickWA('طلب تركيب كانيولا (30 جنيه) بالعيادة.')">طلب (30 ج.م)</button></div>
-    <div class="row"><span>💊 <b>إعطاء حقنة (عضل / وريد)</b></span><button onclick="quickWA('طلب إعطاء حقنة (20 جنيه) بالعيادة.')">طلب (20 ج.م)</button></div>
-    <div class="row"><span>🩸 <b>قياس ضغط وسكر</b></span><button onclick="quickWA('طلب قياس ضغط وسكر (30 جنيه) بالعيادة.')">طلب (30 ج.م)</button></div>
-    <label>أو اكتب استفسارك الخاص لمحمود / د. أشرف:</label>
-    <textarea id="fMsg" rows="2" placeholder="اكتب رسالتك هنا..."></textarea>
-    
+        
