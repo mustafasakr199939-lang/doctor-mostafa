@@ -2,167 +2,121 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>عيادة د. أشرف محمد فولي | البوابة الطبية الذكية</title>
 <style>
-*{box-sizing:border-box;font-family:system-ui,-apple-system,sans-serif;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-body{background:#eef2f6;color:#1e293b;padding-bottom:85px}
-.top-strip{background:#041526;color:#fde68a;font-size:11px;padding:7px;text-align:center;font-weight:bold;border-bottom:1.5px solid #d97706}
+:root {
+  --navy: #07223b;
+  --navy-light: #0e4d82;
+  --teal: #0d9488;
+  --teal-bg: #f0fdfa;
+  --gold: #d97706;
+  --gold-light: #fde68a;
+  --bg: #eef2f6;
+  --card: #ffffff;
+  --text: #1e293b;
+  --muted: #64748b;
+  --border: #e2e8f0;
+  --danger: #dc2626;
+}
+* { box-sizing: border-box; font-family: system-ui, -apple-system, 'Segoe UI', Tahoma, sans-serif; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+body { background: var(--bg); color: var(--text); padding-bottom: 85px; overflow-x: hidden; }
 
-/* الهيدر */
-.hero{background:linear-gradient(145deg,#07223b,#0e4d82);color:#fff;padding:22px 16px 50px;text-align:center;border-radius:0 0 30px 30px;box-shadow:0 8px 25px rgba(7,34,59,.22)}
-.tag-gold{display:inline-block;background:rgba(217,119,6,.22);border:1px solid #f59e0b;color:#fde68a;padding:3px 12px;border-radius:20px;font-size:11px;font-weight:bold;margin-bottom:6px}
-.hero h1{font-size:23px;font-weight:900;margin-bottom:4px}
-.hero p{font-size:12px;color:#cbd5e1}
-.badges{display:flex;justify-content:center;gap:6px;margin-top:10px;flex-wrap:wrap}
-.badge{background:rgba(13,148,136,.28);border:1px solid #2dd4bf;color:#ccfbf1;padding:3px 9px;border-radius:10px;font-size:10px;font-weight:bold}
-.call-row{margin-top:12px;display:flex;justify-content:center;gap:8px}
-.call-row a{background:rgba(255,255,255,.15);color:#fff;text-decoration:none;padding:6px 14px;border-radius:20px;font-size:12px;font-weight:bold}
+/* Top Announcement Bar */
+.top-bar { background: #041526; color: var(--gold-light); font-size: 11px; padding: 7px 10px; text-align: center; font-weight: 700; border-bottom: 1.5px solid var(--gold); }
 
-/* شريط الحالة المباشر */
-.live-bar{background:#fff;width:92%;max-width:480px;margin:-30px auto 16px;padding:12px;border-radius:16px;box-shadow:0 6px 18px rgba(0,0,0,.08);display:grid;grid-template-columns:repeat(3,1fr);text-align:center;border-top:4px solid #0d9488}
-.live-bar div span{display:block;font-size:10px;color:#64748b}
-.live-bar div b{font-size:13px;color:#07223b}
+/* Header */
+.hero { background: linear-gradient(145deg, var(--navy) 0%, var(--navy-light) 100%); color: #fff; padding: 24px 16px 52px; text-align: center; border-radius: 0 0 32px 32px; box-shadow: 0 10px 25px rgba(7, 34, 59, 0.22); }
+.gold-pill { display: inline-block; background: rgba(217, 119, 6, 0.22); border: 1px solid #f59e0b; color: var(--gold-light); padding: 3px 14px; border-radius: 50px; font-size: 11px; font-weight: 700; margin-bottom: 8px; }
+.hero h1 { font-size: 24px; font-weight: 900; margin-bottom: 4px; letter-spacing: -0.3px; }
+.hero p { font-size: 12px; color: #cbd5e1; }
+.equip-row { display: flex; justify-content: center; gap: 6px; margin-top: 12px; flex-wrap: wrap; }
+.eq-tag { background: rgba(13, 148, 136, 0.28); border: 1px solid #2dd4bf; color: #ccfbf1; padding: 4px 10px; border-radius: 12px; font-size: 10.5px; font-weight: 700; }
+.call-row { margin-top: 12px; display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; }
+.call-btn { background: rgba(255, 255, 255, 0.14); border: 1px solid rgba(255, 255, 255, 0.25); color: #fff; text-decoration: none; padding: 6px 14px; border-radius: 50px; font-size: 12px; font-weight: 700; transition: 0.2s; }
+.call-btn:active { background: var(--teal); }
 
-.container{width:92%;max-width:480px;margin:0 auto}
+/* Live Status Card */
+.status-card { background: var(--card); width: 92%; max-width: 480px; margin: -32px auto 16px; padding: 13px 8px; border-radius: 18px; box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08); display: grid; grid-template-columns: repeat(3, 1fr); text-align: center; border-top: 4px solid var(--teal); position: relative; z-index: 5; }
+.stat-col { border-left: 1px solid var(--border); padding: 0 4px; }
+.stat-col:last-child { border-left: none; }
+.stat-col span { display: block; font-size: 10.5px; color: var(--muted); margin-bottom: 2px; }
+.stat-col b { font-size: 13.5px; color: var(--navy); font-weight: 800; }
 
-/* الشاشات المستقلة */
-.screen{display:none;animation:fade .2s ease}
-.screen.active{display:block}
-@keyframes fade{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+/* Container & Screens */
+.wrap { width: 92%; max-width: 480px; margin: 0 auto; }
+.screen { display: none; animation: fadeIn 0.22s ease; }
+.screen.active { display: block; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
 
-/* كروت الرئيسية */
-.menu-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:15px}
-.m-card{background:#fff;padding:18px 12px;border-radius:18px;text-align:center;box-shadow:0 4px 12px rgba(0,0,0,.04);border:1.5px solid #e2e8f0;cursor:pointer;transition:.15s}
-.m-card:active{transform:scale(.97)}
-.m-card.highlight{background:linear-gradient(135deg,#0d9488,#0f766e);color:#fff;border:none}
-.m-card.highlight b,.m-card.highlight small{color:#fff}
-.m-card .ico{font-size:28px;display:block;margin-bottom:6px}
-.m-card b{display:block;font-size:14px;color:#07223b}
-.m-card small{font-size:11px;color:#64748b}
+/* Persistent Digital Ticket */
+.ticket-box { background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%); border: 1.5px solid #10b981; padding: 14px; border-radius: 16px; margin-bottom: 16px; display: none; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.12); }
+.ticket-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+.ticket-head h4 { color: #065f46; font-size: 14px; font-weight: 800; }
+.ticket-code { background: #065f46; color: #fff; padding: 2px 8px; border-radius: 6px; font-size: 12px; font-weight: 800; }
+.ticket-body { font-size: 12.5px; color: #047857; line-height: 1.6; }
+.ticket-foot { margin-top: 10px; padding-top: 8px; border-top: 1px dashed #10b981; display: flex; justify-content: space-between; align-items: center; }
+.edit-btn { background: var(--gold); color: #fff; border: none; padding: 6px 12px; border-radius: 8px; font-size: 11px; font-weight: 700; cursor: pointer; }
 
-/* تذكرة الحجز */
-.ticket-card{background:linear-gradient(135deg,#ecfdf5,#d1fae5);border:1.5px solid #10b981;padding:14px;border-radius:16px;margin-bottom:15px;display:none}
-.ticket-card h4{color:#065f46;font-size:14px;margin-bottom:4px}
-.ticket-card p{font-size:12px;color:#047857;line-height:1.6}
-.t-foot{margin-top:8px;padding-top:8px;border-top:1px dashed #10b981;display:flex;justify-content:space-between;align-items:center}
-.t-edit-btn{background:#d97706;color:#fff;border:none;padding:5px 10px;border-radius:8px;font-size:11px;font-weight:bold;cursor:pointer}
+/* Home Grid */
+.home-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px; }
+.h-card { background: var(--card); padding: 18px 12px; border-radius: 18px; text-align: center; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04); border: 1.5px solid var(--border); cursor: pointer; transition: 0.18s; }
+.h-card:active { transform: scale(0.97); }
+.h-card.primary { background: linear-gradient(135deg, var(--teal) 0%, #0f766e 100%); color: #fff; border: none; box-shadow: 0 6px 16px rgba(13, 148, 136, 0.25); }
+.h-card.primary b, .h-card.primary small { color: #fff; }
+.h-card .ico { font-size: 28px; display: block; margin-bottom: 6px; }
+.h-card b { display: block; font-size: 14px; color: var(--navy); font-weight: 800; }
+.h-card small { font-size: 11px; color: var(--muted); }
 
-/* صفحة الحجز المتكاملة */
-.panel{background:#fff;padding:18px;border-radius:20px;box-shadow:0 4px 16px rgba(0,0,0,.05);margin-bottom:15px}
-.panel-title{font-size:16px;font-weight:900;color:#07223b;margin-bottom:12px;padding-bottom:8px;border-bottom:1.5px solid #f1f5f9;display:flex;justify-content:space-between;align-items:center}
-.step-lbl{display:block;font-size:12px;font-weight:800;color:#07223b;margin:12px 0 6px}
+/* Panels & Forms */
+.panel { background: var(--card); padding: 18px; border-radius: 20px; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05); margin-bottom: 16px; }
+.p-head { font-size: 16px; font-weight: 900; color: var(--navy); margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1.5px solid #f1f5f9; display: flex; justify-content: space-between; align-items: center; }
+.p-badge { font-size: 11px; background: var(--teal-bg); color: var(--teal); padding: 3px 9px; border-radius: 8px; font-weight: 700; }
+.lbl { display: block; font-size: 12px; font-weight: 800; color: var(--navy); margin: 12px 0 6px; }
 
-.srv-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.srv-opt{border:1.5px solid #cbd5e1;padding:10px;border-radius:12px;background:#f8fafc;cursor:pointer;position:relative}
-.srv-opt.selected{border-color:#0d9488;background:#f0fdfa}
-.srv-opt.selected::after{content:"✔";position:absolute;top:8px;left:8px;background:#0d9488;color:#fff;width:18px;height:18px;border-radius:50%;font-size:10px;display:flex;align-items:center;justify-content:center}
-.srv-opt b{display:block;font-size:12px;color:#07223b}
-.srv-opt span{display:block;font-size:12px;color:#0d9488;font-weight:bold;margin:2px 0}
-.srv-opt small{font-size:10px;color:#64748b}
+/* Booking Service Collection */
+.srv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.srv-item { border: 1.5px solid #cbd5e1; padding: 10px; border-radius: 12px; background: #f8fafc; cursor: pointer; position: relative; transition: 0.15s; }
+.srv-item.selected { border-color: var(--teal); background: var(--teal-bg); }
+.srv-item.selected::after { content: "✔"; position: absolute; top: 8px; left: 8px; background: var(--teal); color: #fff; width: 18px; height: 18px; border-radius: 50%; font-size: 10px; display: flex; align-items: center; justify-content: center; }
+.srv-item b { display: block; font-size: 12.5px; color: var(--navy); }
+.srv-item span { display: block; font-size: 12px; color: var(--teal); font-weight: 800; margin: 2px 0; }
+.srv-item small { font-size: 10px; color: var(--muted); }
 
-.day-pills{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:8px}
-.day-pill{border:1.5px solid #cbd5e1;padding:8px 4px;border-radius:10px;text-align:center;font-size:11px;font-weight:bold;cursor:pointer;background:#fff}
-.day-pill.selected{background:#07223b;color:#fff;border-color:#07223b}
+/* Pills */
+.pills-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-bottom: 8px; }
+.pill { border: 1.5px solid #cbd5e1; padding: 9px 4px; border-radius: 10px; text-align: center; font-size: 11px; font-weight: 700; cursor: pointer; background: #fff; transition: 0.15s; }
+.pill.selected { background: var(--navy); color: #fff; border-color: var(--navy); }
+.pill.time.selected { background: var(--teal); border-color: var(--teal); }
 
-.time-pills{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
-.time-pill{border:1.5px solid #cbd5e1;padding:9px 2px;border-radius:10px;text-align:center;font-size:11px;font-weight:bold;cursor:pointer;background:#fff}
-.time-pill.selected{background:#0d9488;color:#fff;border-color:#0d9488}
+input, select, textarea { width: 100%; padding: 11px 12px; border: 1.5px solid #cbd5e1; border-radius: 12px; font-size: 13px; background: #f8fafc; margin-bottom: 8px; outline: none; color: var(--text); }
+input:focus, select:focus, textarea:focus { border-color: var(--teal); background: #fff; }
 
-input,select,textarea{width:100%;padding:11px;border:1.5px solid #cbd5e1;border-radius:12px;font-size:13px;background:#f8fafc;margin-bottom:8px;outline:none}
-input:focus,textarea:focus{border-color:#0d9488;background:#fff}
+.main-btn { width: 100%; background: linear-gradient(135deg, var(--teal) 0%, var(--navy-light) 100%); color: #fff; border: none; padding: 14px; border-radius: 14px; font-size: 15px; font-weight: 800; cursor: pointer; margin-top: 6px; box-shadow: 0 5px 15px rgba(13, 148, 136, 0.25); }
+.main-btn:active { transform: scale(0.99); }
 
-.submit-btn{width:100%;background:linear-gradient(135deg,#0d9488,#0e4d82);color:#fff;border:none;padding:14px;border-radius:14px;font-size:15px;font-weight:800;cursor:pointer;margin-top:8px;box-shadow:0 5px 15px rgba(13,148,136,.25)}
+/* Quick Services List */
+.qs-card { background: #f8fafc; border: 1.5px solid var(--border); border-radius: 14px; padding: 12px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+.qs-info b { display: block; font-size: 14px; color: var(--navy); }
+.qs-info small { display: block; font-size: 11px; color: var(--muted); margin-top: 2px; }
+.qs-price { display: inline-block; background: #ccfbf1; color: #0f766e; font-size: 11px; font-weight: 800; padding: 2px 8px; border-radius: 6px; margin-top: 4px; }
+.qs-btn { background: var(--navy); color: var(--gold-light); border: none; padding: 9px 14px; border-radius: 10px; font-size: 12px; font-weight: 700; cursor: pointer; white-space: nowrap; }
 
-/* شاشة الخدمات السريعة المستقلة */
-.fast-card{background:#f8fafc;border:1.5px solid #e2e8f0;border-radius:14px;padding:12px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center}
-.fast-info b{display:block;font-size:14px;color:#07223b}
-.fast-info small{display:block;font-size:11px;color:#64748b;margin-top:2px}
-.fast-info span{display:inline-block;background:#ccfbf1;color:#0f766e;font-size:11px;font-weight:bold;padding:2px 8px;border-radius:6px;margin-top:4px}
-.fast-act{background:#07223b;color:#fde68a;border:none;padding:9px 14px;border-radius:10px;font-size:12px;font-weight:bold;cursor:pointer;white-space:nowrap}
+/* FAQ Section */
+.faq-box { background: var(--teal-bg); border-right: 4px solid var(--teal); padding: 14px; border-radius: 12px; font-size: 13px; line-height: 1.7; margin-bottom: 12px; border: 1px solid #ccfbf1; border-right-width: 4px; }
+.faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.faq-btn { background: #fff; border: 1.5px solid #cbd5e1; color: var(--navy); padding: 11px 8px; border-radius: 12px; font-size: 12px; font-weight: 700; cursor: pointer; text-align: right; }
+.faq-btn.urgent { border-color: #fecaca; background: #fef2f2; color: #b91c1c; }
 
-/* الاستفسارات */
-.faq-ans{background:#f0fdfa;border-right:4px solid #0d9488;padding:14px;border-radius:12px;font-size:13px;line-height:1.7;margin-bottom:12px;border:1px solid #ccfbf1;border-right-width:4px}
-.faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.faq-btn{background:#fff;border:1.5px solid #cbd5e1;color:#07223b;padding:11px 8px;border-radius:12px;font-size:12px;font-weight:bold;cursor:pointer;text-align:right}
-.faq-btn.red{border-color:#fecaca;background:#fef2f2;color:#b91c1c}
+/* Doctor Control Panel */
+.doc-trigger { background: var(--navy); color: var(--gold-light); border: 1px solid var(--gold); padding: 9px 20px; border-radius: 50px; font-size: 12px; font-weight: 700; cursor: pointer; }
+.doc-panel { display: none; background: #0f172a; color: #f8fafc; padding: 18px; border-radius: 20px; margin-top: 14px; border: 1.5px solid var(--gold); }
+.doc-panel h3 { color: var(--gold-light); font-size: 15px; margin-bottom: 12px; text-align: center; }
+.doc-panel label { display: block; font-size: 11px; color: #94a3b8; margin: 10px 0 4px; font-weight: 700; }
+.doc-panel input, .doc-panel select { background: #1e293b; color: #fff; border-color: #334155; }
+.q-item { background: #1e293b; padding: 9px 12px; border-radius: 10px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; font-size: 12.5px; }
+.q-del { background: var(--danger); color: #fff; border: none; padding: 4px 10px; border-radius: 6px; font-size: 11px; font-weight: 700; cursor: pointer; }
+.rev-box { background: #1e293b; padding: 12px; border-radius: 12px; text-align: center; border: 1px solid #10b981; margin-top: 4px; }
 
-/* لوحة الدكتور */
-.doc-box{background:#0f172a;color:#fff;padding:16px;border-radius:18px;margin-top:15px;border:1.5px solid #d97706}
-.doc-box h3{color:#fde68a;font-size:15px;margin-bottom:10px;text-align:center}
-.doc-box input,.doc-box select,.doc-box textarea{background:#1e293b;color:#fff;border-color:#334155}
-.q-row{background:#1e293b;padding:8px 10px;border-radius:8px;display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;font-size:12px}
-
-/* شريط التنقل السفلي الثابت (مثل تطبيقات الموبايل) */
-.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1.5px solid #e2e8f0;display:grid;grid-template-columns:repeat(4,1fr);padding:6px 0;box-shadow:0 -4px 15px rgba(0,0,0,.06);z-index:999}
-.nav-item{text-align:center;cursor:pointer;color:#64748b;font-size:10px;font-weight:bold;padding:4px 0}
-.nav-item span{display:block;font-size:18px;margin-bottom:2px}
-.nav-item.active{color:#0d9488}
-</style>
-</head>
-<body>
-
-<div class="top-strip">🏥 عيادة د. أشرف محمد فولي — وحدة سونار وأشعة تلفزيونية | رسم قلب ECG | حجز مسبق</div>
-
-<div class="hero">
-  <div class="tag-gold">مركز التشخيص المتكامل والرعاية الطبية</div>
-  <h1>عيادة د. أشرف محمد فولي</h1>
-  <p>تشخيص دقيق بأحدث أجهزة السونار ورسم القلب الرقمي ECG</p>
-  <div class="badges">
-    <span class="badge">📡 أشعة تلفزيونية وسونار</span>
-    <span class="badge">💓 رسم قلب ECG</span>
-    <span class="badge">⚡ خدمات تمريضية فورية</span>
-  </div>
-  <div class="call-row">
-    <a href="tel:01275646204">📞 01275646204</a>
-    <a href="tel:01279049081">📞 01279049081</a>
-  </div>
-</div>
-
-<div class="live-bar">
-  <div><span>حالة العيادة</span><b id="stDisp">🟢 مفتوح الآن</b></div>
-  <div><span>الدور الحالي</span><b id="quDisp">رقم #1</b></div>
-  <div><span>سعر الكشف</span><b>100 جنيه</b></div>
-</div>
-
-<div class="container">
-
-  <!-- تذكرة الحجز النشطة (تظهر في كل الشاشات لو المريض حجز) -->
-  <div class="ticket-card" id="tBox">
-    <h4>🎟️ تذكرة حجزك المسبق المؤكدة</h4>
-    <p id="tText"></p>
-    <div class="t-foot" id="tActions"></div>
-  </div>
-
-  <!-- الشاشة 1: الرئيسية -->
-  <div id="scrHome" class="screen active">
-    <div class="menu-grid">
-      <div class="m-card highlight" onclick="goScreen('scrBook', 1)">
-        <span class="ico">📅</span>
-        <b>احجز موعدك الآن</b>
-        <small>كشف، سونار، رسم قلب</small>
-      </div>
-      <div class="m-card" onclick="goScreen('scrFast', 2)">
-        <span class="ico">⚡</span>
-        <b>الخدمات السريعة</b>
-        <small>حقن، حساسية، كانيولا</small>
-      </div>
-      <div class="m-card" onclick="goScreen('scrFaq', 3)">
-        <span class="ico">🤖</span>
-        <b>الاستفسارات</b>
-        <small>المواعيد والأجهزة</small>
-      </div>
-      <div class="m-card" onclick="sendWA('السلام عليكم يا أستاذ محمود، عايز أستفسر عن الدور الحالي في عيادة د. أشرف.')">
-        <span class="ico">💬</span>
-        <b>واتساب الاستقبال</b>
-        <small>تواصل مباشر مع أ. محمود</small>
-      </div>
-    </div>
-
-    <div class="panel" style="background:linear-gradient(135deg,#07223b,#0f385e);color:#fff">
-      <div style="font-size:14px;font-weight:bold;color:#fde68a;margin-bottom:8px">✨ إمكانيات وتجهيزات العيادة</div>
-      <p style="font-size:12px;line-height:1.8;color:#e2e8f0">
-        • <b>وحدة سونار وأشعة تلفزيونية</b> للتشخيص الفوري أثناء الكشف.<br>
-        • <b>جهاز رسم قلب رقمي (ECG)</b> لمتابعة كفاءة القلب بدقة عالية.<br>
-
-        
+/* Bottom Navigation Bar */
+  
