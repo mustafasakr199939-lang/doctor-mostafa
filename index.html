@@ -4,9 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>عيادة د. أشرف محمد فولي | البوابة الطبية الذكية</title>
+<script src="clinic-data.js"></script>
 <style>
 *{box-sizing:border-box;font-family:system-ui,-apple-system,sans-serif;margin:0;padding:0}
-body{background:#f0f4f8;color:#1e293b;padding-bottom:40px}
+body{background:#eef2f6;color:#1e293b;padding-bottom:40px}
 .top{background:#05192d;color:#fde68a;font-size:12px;padding:8px;text-align:center;font-weight:bold;border-bottom:2px solid #d97706}
 .head{background:linear-gradient(135deg,#07223b,#0e4d82);color:#fff;padding:25px 15px 55px;text-align:center;border-radius:0 0 32px 32px;box-shadow:0 8px 25px rgba(7,34,59,.2)}
 .gold-tag{display:inline-block;background:rgba(217,119,6,.2);border:1px solid #f59e0b;color:#fde68a;padding:3px 12px;border-radius:20px;font-size:11px;font-weight:bold;margin-bottom:8px}
@@ -25,10 +26,9 @@ body{background:#f0f4f8;color:#1e293b;padding-bottom:40px}
 .ticket p{font-size:12px;color:#047857;line-height:1.6}
 .ticket-actions{margin-top:10px;padding-top:8px;border-top:1px dashed #10b981;display:flex;justify-content:space-between;align-items:center}
 .edit-15-btn{background:#d97706;color:#fff;border:none;padding:6px 12px;border-radius:8px;font-size:11px;font-weight:bold;cursor:pointer}
-.locked-msg{font-size:11px;color:#64748b;font-weight:bold}
 .tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:15px}
-.tab{background:#fff;border:1.5px solid #cbd5e1;padding:12px 6px;border-radius:14px;text-align:center;cursor:pointer}
-.tab.active{border-color:#0d9488;background:#f0fdfa}
+.tab{background:#fff;border:1.5px solid #cbd5e1;padding:12px 6px;border-radius:14px;text-align:center;cursor:pointer;transition:.2s}
+.tab.active{border-color:#0d9488;background:#f0fdfa;transform:translateY(-2px)}
 .tab b{display:block;font-size:13px;color:#07223b}
 .tab small{font-size:10px;color:#64748b}
 .box{background:#fff;padding:18px;border-radius:18px;box-shadow:0 4px 15px rgba(0,0,0,.05);display:none}
@@ -41,7 +41,7 @@ body{background:#f0f4f8;color:#1e293b;padding-bottom:40px}
 .col span{display:block;font-size:12px;color:#0d9488;font-weight:bold}
 .col small{font-size:10px;color:#64748b}
 label{display:block;font-size:12px;font-weight:bold;margin:8px 0 4px}
-input,select,textarea{width:100%;padding:10px;border:1.5px solid #cbd5e1;border-radius:10px;font-size:13px;background:#f8fafc}
+input,textarea{width:100%;padding:10px;border:1.5px solid #cbd5e1;border-radius:10px;font-size:13px;background:#f8fafc}
 .slots{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:12px}
 .slot{border:1.5px solid #cbd5e1;padding:8px 2px;text-align:center;border-radius:8px;font-size:11px;font-weight:bold;cursor:pointer}
 .slot.active{background:#07223b;color:#fff;border-color:#07223b}
@@ -54,17 +54,9 @@ input,select,textarea{width:100%;padding:10px;border:1.5px solid #cbd5e1;border-
 .row button{background:#0d9488;color:#fff;border:none;padding:6px 12px;border-radius:8px;font-size:11px;font-weight:bold;cursor:pointer}
 .features-box{background:linear-gradient(135deg,#07223b,#0f385e);color:#fff;padding:14px;border-radius:16px;margin-top:15px}
 .features-box h3{font-size:14px;color:#fde68a;margin-bottom:8px}
-.feat-item{font-size:12px;margin-bottom:6px;display:flex;align-items:center;gap:6px;color:#e2e8f0}
-.doc-area{margin-top:20px;text-align:center}
-.doc-btn{background:#07223b;color:#fde68a;border:1px solid #d97706;padding:8px 16px;border-radius:20px;font-size:12px;font-weight:bold;cursor:pointer}
-.doc-panel{display:none;background:#0f172a;color:#fff;padding:15px;border-radius:16px;margin-top:12px;text-align:right}
-.dtabs{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;margin-bottom:12px}
-.dtab{background:#1e293b;color:#cbd5e1;padding:6px 2px;border-radius:8px;font-size:10px;text-align:center;cursor:pointer;font-weight:bold}
-.dtab.active{background:#d97706;color:#000}
-.dtool{display:none}
-.dtool.active{display:block}
-.dtool input,.dtool select,.dtool textarea{background:#1e293b;color:#fff;border-color:#334155;margin-bottom:8px}
-.qitem{background:#1e293b;padding:8px;border-radius:8px;display:flex;justify-content:space-between;margin-bottom:5px;font-size:12px}
+.feat-item{font-size:12px;margin-bottom:6px;color:#e2e8f0}
+.doc-link{display:block;text-align:center;margin-top:20px}
+.doc-link a{display:inline-block;background:#07223b;color:#fde68a;border:1px solid #d97706;padding:8px 18px;border-radius:20px;font-size:12px;font-weight:bold;text-decoration:none}
 </style>
 </head>
 <body>
@@ -93,21 +85,18 @@ input,select,textarea{width:100%;padding:10px;border:1.5px solid #cbd5e1;border-
 </div>
 
 <div class="wrap">
-  <!-- تذكرة الحجز المسبق + شرط التعديل خلال أول 15 دقيقة فقط -->
   <div class="ticket" id="tBox">
     <h4>🎟️ تذكرة حجزك المسبق المؤكدة</h4>
     <p id="tText"></p>
     <div class="ticket-actions" id="tActions"></div>
   </div>
 
-  <!-- التبويبات الرئيسية الثلاثة -->
   <div class="tabs">
     <div class="tab active" onclick="openTab('b1',this)"><b>📅 الحجز المسبق</b><small>سجل بيانات حجزك</small></div>
     <div class="tab" onclick="openTab('b3',this)"><b>🤖 الاستفسارات</b><small>الأجهزة والمواعيد</small></div>
     <div class="tab" onclick="openTab('b4',this)"><b>⚡ خدمات سريعة</b><small>حساسية، كانيولا، حقن</small></div>
   </div>
 
-  <!-- 1. الحجز المسبق (يدخل مباشرة على ملء البيانات) -->
   <div id="b1" class="box active">
     <h2>📅 تسجيل بيانات الحجز المسبق</h2>
     <label>1. اختر نوع الكشف أو الفحص:</label>
@@ -117,11 +106,9 @@ input,select,textarea{width:100%;padding:10px;border:1.5px solid #cbd5e1;border-
       <div class="col" onclick="setSrv(this,'رسم قلب ECG','تخطيط قلب')"><b>💓 رسم قلب ECG</b><span>تخطيط قلب</span><small>جهاز رقمي حديث</small></div>
       <div class="col" onclick="setSrv(this,'استشارة ومتابعة','مجاناً')"><b>📋 استشارة</b><span>مجاناً</span><small>خلال 10 أيام من الكشف</small></div>
     </div>
-    
     <label>2. بيانات المريض:</label>
     <input type="text" id="pName" placeholder="اكتب اسم المريض بالكامل..." style="margin-bottom:8px">
     <input type="tel" id="pPhone" placeholder="رقم الموبايل (واتساب للتأكيد)...">
-    
     <label>3. اختر التاريخ والفترة المناسبة:</label>
     <input type="date" id="pDate" style="margin-bottom:8px">
     <div class="slots">
@@ -130,13 +117,12 @@ input,select,textarea{width:100%;padding:10px;border:1.5px solid #cbd5e1;border-
       <div class="slot" onclick="setTime(this,'9:00 - 11:00 م')">9:00 - 11:00 م</div>
     </div>
     <button class="btn" onclick="bookNow()">تأكيد الحجز وإرسال لمحمود 🎟️</button>
-    <p style="font-size:11px;color:#64748b;text-align:center;margin-top:8px">ملاحظة: يُسمح بتعديل أو إلغاء بيانات الحجز خلال أول 15 دقيقة فقط من التسجيل.</p>
+    <p style="font-size:11px;color:#64748b;text-align:center;margin-top:8px">يُسمح بتعديل أو إلغاء الحجز خلال أول 15 دقيقة فقط من التسجيل.</p>
   </div>
 
-  <!-- 2. قسم الاستفسارات الشامل -->
   <div id="b3" class="box">
     <h2>🤖 الاستفسارات ومعلومات العيادة</h2>
-    <div class="ans" id="botOut">أهلاً بك في عيادة د. أشرف محمد فولي. اضغط على أي بند بالأسفل لمعرفة التفاصيل كاملة:</div>
+    <div class="ans" id="botOut">أهلاً بك في عيادة د. أشرف محمد فولي. اختر سؤالك بالأسفل لمعرفة التفاصيل كاملة:</div>
     <div class="qgrid">
       <button class="qbtn" onclick="bot('p')">💰 الكشف والوحدات</button>
       <button class="qbtn" onclick="bot('eq')">📡 الأجهزة المتاحة</button>
@@ -146,6 +132,13 @@ input,select,textarea{width:100%;padding:10px;border:1.5px solid #cbd5e1;border-
     </div>
   </div>
 
-  <!-- 3. الخدمات السريعة (مخفية بالداخل: اختبار حساسية، كانيولا، حقن) -->
   <div id="b4" class="box">
+    <h2>⚡ وحدة الخدمات الطبية السريعة</h2>
+    <p style="font-size:12px;color:#64748b;margin-bottom:10px">اختر الخدمة لإبلاغ الاستقبال وتجهيزها فوراً بدون انتظار:</p>
+    <div class="row"><span>💉 <b>اختبار حساسية</b></span><button onclick="quickWA('طلب عمل اختبار حساسية (20 جنيه) بالعيادة.')">طلب (20 ج.م)</button></div>
+    <div class="row"><span>🩹 <b>تركيب كانيولا</b></span><button onclick="quickWA('طلب تركيب كانيولا (30 جنيه) بالعيادة.')">طلب (30 ج.م)</button></div>
+    <div class="row"><span>💊 <b>إعطاء حقنة (عضل / وريد)</b></span><button onclick="quickWA('طلب إعطاء حقنة (20 جنيه) بالعيادة.')">طلب (20 ج.م)</button></div>
+    <div class="row"><span>🩸 <b>قياس ضغط وسكر</b></span><button onclick="quickWA('طلب قياس ضغط وسكر (30 جنيه) بالعيادة.')">طلب (30 ج.م)</button></div>
+    <label>أو اكتب استفسارك الخاص لمحمود / د. أشرف:</label>
+    <textarea id="fMsg" rows="2" placeholder="اكتب رسالتك هنا..."></textarea>
     
