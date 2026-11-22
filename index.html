@@ -43,6 +43,9 @@ body{background:#eef2f6;color:#1e293b;padding-bottom:85px;overflow-x:hidden}
 .panel{background:#fff;padding:18px;border-radius:20px;box-shadow:0 4px 16px rgba(0,0,0,.05);margin-bottom:16px}
 .p-head{font-size:16px;font-weight:900;color:#07223b;margin-bottom:12px;padding-bottom:8px;border-bottom:1.5px solid #f1f5f9;display:flex;justify-content:space-between;align-items:center}
 .p-tag{font-size:11px;background:#f0fdfa;color:#0d9488;padding:3px 9px;border-radius:8px;font-weight:700}
+.nurse-banner{background:#f0fdfa;border:1.5px solid #2dd4bf;border-radius:14px;padding:12px;margin-bottom:14px}
+.nurse-banner b{display:block;color:#0f766e;font-size:13px;margin-bottom:3px}
+.nurse-banner p{font-size:11.5px;color:#334155;line-height:1.5}
 .lbl{display:block;font-size:12px;font-weight:800;color:#07223b;margin:12px 0 6px}
 .srv-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .srv{border:1.5px solid #cbd5e1;padding:10px;border-radius:12px;background:#f8fafc;cursor:pointer;position:relative}
@@ -80,7 +83,7 @@ input:focus,textarea:focus{border-color:#0d9488;background:#fff}
 </head>
 <body>
 
-<div class="top-strip">🏥 عيادة د. أشرف محمد فولي — وحدة سونار وأشعة تلفزيونية | رسم قلب ECG | حجز مسبق</div>
+<div class="top-strip">🏥 عيادة د. أشرف محمد فولي — سونار وأشعة تلفزيونية | رسم قلب ECG | رعاية تمريضية متكاملة</div>
 
 <div class="hero">
   <div class="gold-tag">مركز التشخيص المتكامل والرعاية الطبية</div>
@@ -89,7 +92,7 @@ input:focus,textarea:focus{border-color:#0d9488;background:#fff}
   <div class="badges">
     <span class="badge">📡 سونار وأشعة تلفزيونية</span>
     <span class="badge">💓 رسم قلب رقمي ECG</span>
-    <span class="badge">🗂️ ملف طبي رقمي</span>
+    <span class="badge">🩺 رعاية تمريضية متكاملة</span>
   </div>
   <div class="calls">
     <a href="tel:01275646204">📞 01275646204</a>
@@ -120,16 +123,10 @@ input:focus,textarea:focus{border-color:#0d9488;background:#fff}
         <span class="ico">📅</span><b>احجز موعدك الآن</b><small>كشف، سونار، رسم قلب</small>
       </div>
       <div class="card-btn" onclick="go('sFast',2)">
-        <span class="ico">⚡</span><b>الخدمات السريعة</b><small>حساسية، كانيولا، حقن</small>
+        <span class="ico">⚡</span><b>الخدمات والتمريض</b><small>حقن، محاليل، حساسية</small>
       </div>
       <div class="card-btn" onclick="go('sFaq',3)">
         <span class="ico">🤖</span><b>الاستفسارات</b><small>المواعيد والأجهزة</small>
       </div>
       <div class="card-btn" onclick="wa('السلام عليكم يا أستاذ محمود، عايز أستفسر عن الدور الحالي في عيادة د. أشرف محمد فولي.')">
-        <span class="ico">💬</span><b>واتساب الاستقبال</b><small>تواصل مباشر مع أ. محمود</small>
-      </div>
-    </div>
-
-    <div class="panel" style="background:linear-gradient(135deg,#07223b,#0f385e);color:#fff">
-      <div style="font-size:14px;font-weight:800;color:#fde68a;margin-bottom:8px">✨ مميزات وتجهيزات العيادة</div>
-      
+        
