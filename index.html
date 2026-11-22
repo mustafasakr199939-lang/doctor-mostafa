@@ -3,174 +3,195 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>عيادة د. مصطفى صقر | البوابة الذكية للمرضى</title>
+    <title>عيادة د. مصطفى صقر | المنظومة الطبية الذكية</title>
     <link href="https://googleapis.com" rel="stylesheet">
     <style>
         :root {
-            --primary: #0a365c;
-            --secondary: #0d9488;
-            --accent: #d97706;
-            --bg: #f1f5f9;
-            --card: #ffffff;
-            --text: #0f172a;
+            --navy: #07223b;
+            --blue: #0e4d82;
+            --teal: #0d9488;
+            --teal-light: #f0fdfa;
+            --gold: #d97706;
+            --bg: #eef2f6;
+            --white: #ffffff;
+            --text: #1e293b;
+            --muted: #64748b;
+            --border: #e2e8f0;
         }
         * { box-sizing: border-box; font-family: 'Cairo', sans-serif; margin: 0; padding: 0; }
-        body { background-color: var(--bg); color: var(--text); padding-bottom: 60px; overflow-x: hidden; }
+        body { background-color: var(--bg); color: var(--text); padding-bottom: 50px; }
 
-        .ticker-wrap {
-            background: #051e34; color: #fde68a; font-size: 12px; font-weight: 700;
-            padding: 8px 0; overflow: hidden; white-space: nowrap; border-bottom: 1px solid rgba(255,255,255,0.1);
-        }
-        .ticker { display: inline-block; animation: marquee 22s linear infinite; }
-        @keyframes marquee { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
-
-        .header {
-            background: linear-gradient(135deg, var(--primary), #06243f);
-            color: white; padding: 24px 20px 55px; text-align: center;
-            border-bottom-left-radius: 32px; border-bottom-right-radius: 32px;
-            box-shadow: 0 10px 25px rgba(10, 54, 92, 0.25); position: relative;
-        }
-        .badge {
-            background: rgba(13, 148, 136, 0.25); border: 1px solid #2dd4bf; color: #ccfbf1;
-            padding: 4px 14px; border-radius: 20px; font-size: 11px; font-weight: 700;
-            display: inline-block; margin-bottom: 8px;
-        }
-        .header h1 { font-size: 24px; font-weight: 900; }
-        .header p { font-size: 12px; opacity: 0.9; margin-top: 4px; }
-
-        .call-bar { display: flex; justify-content: center; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
-        .call-pill {
-            background: rgba(255,255,255,0.12); color: white; text-decoration: none;
-            padding: 5px 12px; border-radius: 20px; font-size: 11px; font-weight: 700;
-            border: 1px solid rgba(255,255,255,0.2); transition: 0.2s;
-        }
-        .call-pill:hover { background: var(--secondary); border-color: var(--secondary); }
-
-        .live-dashboard {
-            background: var(--card); width: 92%; max-width: 460px; margin: -32px auto 18px;
-            padding: 14px; border-radius: 18px; box-shadow: 0 8px 24px rgba(0,0,0,0.08);
-            display: grid; grid-template-columns: repeat(3, 1fr); text-align: center;
-            border-top: 4px solid var(--secondary); position: relative; z-index: 10;
-        }
-        .dash-item { border-left: 1px solid #e2e8f0; }
-        .dash-item:last-child { border-left: none; }
-        .dash-item span { display: block; font-size: 10px; color: #64748b; }
-        .dash-item strong { font-size: 13px; color: var(--primary); font-weight: 800; }
-        .pulse {
-            height: 8px; width: 8px; background: #10b981; border-radius: 50%;
-            display: inline-block; margin-left: 4px; animation: blink 1.5s infinite;
-        }
-        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
-
-        .saved-ticket {
-            width: 92%; max-width: 460px; margin: 0 auto 16px;
-            background: linear-gradient(135deg, #ecfdf5, #d1fae5);
-            border: 1px solid #10b981; border-radius: 16px; padding: 14px;
-            display: none; position: relative; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.15);
-        }
-        .saved-ticket h4 { color: #065f46; font-size: 14px; margin-bottom: 4px; }
-        .saved-ticket p { font-size: 12px; color: #047857; line-height: 1.6; }
-        .clear-ticket { position: absolute; top: 12px; left: 12px; background: none; border: none; color: #dc2626; font-size: 11px; cursor: pointer; font-weight: 700; }
-
-        .container { width: 92%; max-width: 460px; margin: 0 auto; }
-
-        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 18px; }
-        .card-btn {
-            background: var(--card); border: 1px solid #e2e8f0; padding: 14px 10px;
-            border-radius: 16px; box-shadow: 0 3px 10px rgba(0,0,0,0.03);
-            cursor: pointer; transition: 0.2s; text-align: center;
-        }
-        .card-btn.active {
-            border: 2px solid var(--secondary); background: #f0fdfa;
-            transform: translateY(-2px); box-shadow: 0 8px 16px rgba(13, 148, 136, 0.14);
-        }
-        .card-btn .icon { font-size: 24px; display: block; margin-bottom: 4px; }
-        .card-btn h3 { font-size: 13px; font-weight: 800; color: var(--primary); }
-        .card-btn p { font-size: 10px; color: #64748b; margin-top: 2px; }
-
-        .panel {
-            background: var(--card); padding: 20px; border-radius: 20px;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.05); display: none;
-            animation: slideUp 0.25s ease;
-        }
-        .panel.active { display: block; }
-        @keyframes slideUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
-        .panel h2 { font-size: 16px; color: var(--primary); margin-bottom: 14px; padding-bottom: 8px; border-bottom: 1px solid #f1f5f9; }
-        .form-group { margin-bottom: 14px; }
-        .form-group label { display: block; font-size: 12px; font-weight: 700; margin-bottom: 6px; color: #334155; }
-        .form-group input, .form-group select, .form-group textarea {
-            width: 100%; padding: 10px 12px; border: 1px solid #cbd5e1; border-radius: 10px;
-            font-size: 13px; outline: none; background: #f8fafc;
+        /* الشريط العلوي المتحرك */
+        .top-bar {
+            background: var(--navy); color: #fef3c7; font-size: 12px; font-weight: 700;
+            padding: 8px 15px; text-align: center; border-bottom: 2px solid var(--gold);
         }
 
-        .collection-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-        .col-item {
-            border: 1.5px solid #e2e8f0; border-radius: 12px; padding: 10px;
-            cursor: pointer; transition: 0.2s; background: #fff; text-align: right; position: relative;
+        /* الهيدر الرئيسي */
+        .hero {
+            background: linear-gradient(145deg, var(--navy) 0%, var(--blue) 100%);
+            color: var(--white); padding: 28px 20px 65px; text-align: center;
+            border-bottom-left-radius: 36px; border-bottom-right-radius: 36px;
+            box-shadow: 0 12px 30px rgba(7, 34, 59, 0.25);
         }
-        .col-item.selected { border-color: var(--secondary); background: #f0fdfa; }
-        .col-item.selected::after {
-            content: "✔"; position: absolute; top: 8px; left: 8px;
-            background: var(--secondary); color: white; width: 18px; height: 18px;
-            border-radius: 50%; font-size: 10px; display: flex; align-items: center; justify-content: center;
+        .hero-tag {
+            display: inline-block; background: rgba(255,255,255,0.12);
+            border: 1px solid rgba(255,255,255,0.25); padding: 4px 14px;
+            border-radius: 50px; font-size: 11px; font-weight: 700; margin-bottom: 10px;
         }
-        .col-title { font-size: 12px; font-weight: 800; color: var(--primary); display: block; }
-        .col-price { font-size: 12px; font-weight: 900; color: var(--secondary); display: block; margin-top: 2px; }
-        .col-desc { font-size: 10px; color: #64748b; display: block; margin-top: 2px; }
-
-        .slots-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
-        .slot {
-            padding: 9px 4px; text-align: center; border: 1.5px solid #cbd5e1;
-            border-radius: 10px; font-size: 11px; font-weight: 700; cursor: pointer; background: #fff;
-        }
-        .slot.selected { background: var(--primary); color: white; border-color: var(--primary); }
-
-        .btn-submit {
-            width: 100%; background: linear-gradient(135deg, var(--secondary), var(--primary));
-            color: white; border: none; padding: 13px; border-radius: 12px;
-            font-size: 14px; font-weight: 800; cursor: pointer; margin-top: 8px;
-            box-shadow: 0 4px 12px rgba(13, 148, 136, 0.25);
-        }
-
-        .bot-box { background: #f8fafc; padding: 14px; border-radius: 12px; border-right: 4px solid var(--secondary); font-size: 13px; line-height: 1.7; margin-bottom: 12px; }
-        .quick-replies { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-        .q-btn { background: #e0f2fe; color: #0369a1; border: none; padding: 9px; border-radius: 10px; font-size: 12px; cursor: pointer; font-weight: 700; text-align: right; }
-
-        .service-tag { display: flex; justify-content: space-between; align-items: center; padding: 10px 12px; border: 1px solid #e2e8f0; border-radius: 10px; margin-bottom: 8px; font-size: 12px; background: #f8fafc; }
-        .service-tag span { font-weight: 700; color: var(--primary); }
-        .service-tag b { color: var(--secondary); font-size: 13px; }
-
-        .footer { text-align: center; margin-top: 25px; font-size: 11px; color: #64748b; }
-        .doc-btn { background: none; border: 1px dashed #94a3b8; color: #475569; padding: 5px 12px; border-radius: 8px; font-size: 11px; cursor: pointer; margin-top: 8px; }
+        .hero h1 { font-size: 26px; font-weight: 900; letter-spacing: -0.5px; }
+        .hero p { font-size: 13px; color: #cbd5e1; margin-top: 4px; }
         
-        .doc-modal {
-            display: none; background: #0f172a; color: white; padding: 18px;
-            border-radius: 16px; margin-top: 15px; text-align: right;
+        .quick-contacts { display: flex; justify-content: center; gap: 10px; margin-top: 14px; flex-wrap: wrap; }
+        .contact-chip {
+            background: rgba(13, 148, 136, 0.25); border: 1px solid #2dd4bf;
+            color: #ffffff; text-decoration: none; padding: 6px 14px;
+            border-radius: 50px; font-size: 12px; font-weight: 700; transition: 0.2s;
         }
-        .doc-modal h3 { font-size: 14px; color: #38bdf8; margin-bottom: 10px; }
-        .doc-modal select, .doc-modal input { width: 100%; padding: 8px; border-radius: 8px; margin-bottom: 10px; border: none; font-size: 12px; }
-        .doc-save { background: #10b981; color: white; border: none; padding: 8px 14px; border-radius: 8px; font-weight: 700; cursor: pointer; width: 100%; }
-    </style>
-</head>
-<body>
+        .contact-chip:hover { background: var(--teal); }
 
-    <div class="ticker-wrap">
-        <div class="ticker">
-            🏥 أهلاً بكم في عيادة د. مصطفى صقر — الكشف: 100 جنيه | اختبار الحساسية: 20 جنيه | الحجز المسبق متاح إلكترونياً لتقليل وقت الانتظار — للاستفسار: 01275646204 / 01279049081 ⚡
-        </div>
-    </div>
+        /* بطاقة الحالة المباشرة */
+        .status-card {
+            background: var(--white); width: 92%; max-width: 480px; margin: -40px auto 20px;
+            padding: 16px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            display: grid; grid-template-columns: repeat(3, 1fr); text-align: center;
+            border-top: 4px solid var(--teal);
+        }
+        .stat-box { border-left: 1px solid var(--border); padding: 0 5px; }
+        .stat-box:last-child { border-left: none; }
+        .stat-label { font-size: 11px; color: var(--muted); display: block; margin-bottom: 2px; }
+        .stat-val { font-size: 14px; font-weight: 900; color: var(--navy); }
+        .live-dot {
+            display: inline-block; width: 9px; height: 9px; background: #10b981;
+            border-radius: 50%; margin-left: 4px; box-shadow: 0 0 8px #10b981;
+        }
 
-    <div class="header">
-        <div class="badge">البوابة الرقمية الذكية للعيادة</div>
-        <h1>عيادة د. مصطفى صقر</h1>
-        <p>احجز موعدك مسبقاً واختر الخدمة المناسبة في ثوانٍ</p>
-        <div class="call-bar">
-            <a href="tel:01275646204" class="call-pill">📞 01275646204</a>
-            <a href="tel:01279049081" class="call-pill">📞 01279049081</a>
-        </div>
-    </div>
+        /* تذكرة المريض المحفوظة */
+        .ticket-banner {
+            width: 92%; max-width: 480px; margin: 0 auto 18px;
+            background: linear-gradient(135deg, #ecfdf5, #d1fae5);
+            border: 1.5px solid #10b981; border-radius: 18px; padding: 15px;
+            display: none; position: relative;
+        }
+        .ticket-banner h4 { color: #065f46; font-size: 14px; font-weight: 800; margin-bottom: 5px; }
+        .ticket-banner p { color: #047857; font-size: 12px; line-height: 1.6; }
+        .ticket-del {
+            position: absolute; top: 12px; left: 12px; background: #fee2e2;
+            color: #dc2626; border: none; padding: 3px 8px; border-radius: 6px;
+            font-size: 11px; font-weight: 700; cursor: pointer;
+        }
 
-    <div class="live-dashboard">
-        <div class="dash-item">
-            <span>حالة العيادة</span>
+        /* الحاوية الرئيسية */
+        .main-wrap { width: 92%; max-width: 480px; margin: 0 auto; }
+
+        /* شريط التبويبات للمريض */
+        .nav-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 18px; }
+        .nav-tab {
+            background: var(--white); border: 1.5px solid var(--border);
+            padding: 15px 12px; border-radius: 18px; text-align: center;
+            cursor: pointer; transition: 0.2s; box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+        }
+        .nav-tab.active {
+            border-color: var(--teal); background: var(--teal-light);
+            transform: translateY(-2px); box-shadow: 0 8px 18px rgba(13, 148, 136, 0.12);
+        }
+        .nav-tab .emoji { font-size: 26px; display: block; margin-bottom: 5px; }
+        .nav-tab strong { display: block; font-size: 14px; color: var(--navy); }
+        .nav-tab small { font-size: 11px; color: var(--muted); }
+
+        /* محتوى التبويبات */
+        .section-box {
+            background: var(--white); padding: 22px; border-radius: 22px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.05); display: none;
+        }
+        .section-box.active { display: block; animation: fadeIn 0.25s ease; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+
+        .sec-title {
+            font-size: 17px; font-weight: 900; color: var(--navy);
+            margin-bottom: 16px; padding-bottom: 10px; border-bottom: 2px solid #f1f5f9;
+        }
+
+        /* كوليكشن الخدمات */
+        .service-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px; }
+        .srv-card {
+            border: 1.5px solid var(--border); border-radius: 14px; padding: 12px;
+            cursor: pointer; transition: 0.2s; position: relative; background: #fafbfc;
+        }
+        .srv-card.selected { border-color: var(--teal); background: var(--teal-light); }
+        .srv-card.selected::after {
+            content: "✓"; position: absolute; top: 8px; left: 8px;
+            background: var(--teal); color: white; width: 20px; height: 20px;
+            border-radius: 50%; font-size: 12px; font-weight: bold;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .srv-name { font-size: 13px; font-weight: 800; color: var(--navy); display: block; }
+        .srv-price { font-size: 13px; font-weight: 900; color: var(--teal); display: block; margin: 3px 0; }
+        .srv-note { font-size: 10px; color: var(--muted); display: block; }
+
+        /* الحقول والأزرار */
+        .field { margin-bottom: 14px; }
+        .field label { display: block; font-size: 12px; font-weight: 800; color: var(--navy); margin-bottom: 6px; }
+        .field input, .field select, .field textarea {
+            width: 100%; padding: 11px 14px; border: 1.5px solid #cbd5e1;
+            border-radius: 12px; font-size: 13px; background: #f8fafc; outline: none;
+        }
+        .field input:focus, .field select:focus, .field textarea:focus { border-color: var(--teal); background: #fff; }
+
+        .time-slots { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+        .time-btn {
+            padding: 10px 4px; border: 1.5px solid #cbd5e1; border-radius: 10px;
+            text-align: center; font-size: 11px; font-weight: 800; cursor: pointer; background: #fff;
+        }
+        .time-btn.selected { background: var(--navy); color: #fff; border-color: var(--navy); }
+
+        .primary-btn {
+            width: 100%; background: linear-gradient(135deg, var(--teal), var(--blue));
+            color: white; border: none; padding: 14px; border-radius: 14px;
+            font-size: 15px; font-weight: 800; cursor: pointer; margin-top: 6px;
+            box-shadow: 0 6px 16px rgba(13, 148, 136, 0.25);
+        }
+
+        /* قسم الأسئلة والاستفسارات */
+        .chat-answer {
+            background: #f1f5f9; border-right: 4px solid var(--teal); padding: 14px;
+            border-radius: 12px; font-size: 13px; line-height: 1.7; margin-bottom: 14px;
+        }
+        .faq-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+        .faq-btn {
+            background: #e0f2fe; color: #0369a1; border: none; padding: 10px;
+            border-radius: 10px; font-size: 12px; font-weight: 800; cursor: pointer; text-align: right;
+        }
+
+        /* قائمة الخدمات السريعة */
+        .price-row {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 12px; background: #f8fafc; border: 1px solid var(--border);
+            border-radius: 12px; margin-bottom: 8px; font-size: 13px;
+        }
+        .price-row b { color: var(--teal); font-weight: 900; }
+
+        /* بوابة الدكتور */
+        .doctor-footer { text-align: center; margin-top: 30px; }
+        .doc-trigger {
+            background: var(--navy); color: #fde68a; border: none;
+            padding: 8px 18px; border-radius: 50px; font-size: 12px;
+            font-weight: 800; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        /* غرفة عمليات الدكتور (4 أدوات) */
+        .doc-workspace {
+            display: none; background: #0f172a; color: #f8fafc;
+            padding: 20px; border-radius: 22px; margin-top: 16px; text-align: right;
+            border: 2px solid var(--gold);
+        }
+        .doc-workspace h3 { color: #38bdf8; font-size: 16px; margin-bottom: 12px; text-align: center; }
+        .doc-tabs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-bottom: 16px; }
+        .d-tab {
+            background: #1e293b; color: #cbd5e1; border: 1px solid #334155;
+            padding: 8px 4px; border-radius: 10px; font-size: 11px; font-weight: 700;
+            cursor: pointer; text-align: center;
+        }
+        .d-tab.active { background: var(--gold); color: #000; border-color: var(--gold); }
+        .d-tool { display: none; }
+        .d-tool.active { display: block; }
