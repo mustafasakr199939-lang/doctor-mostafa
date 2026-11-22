@@ -17,7 +17,6 @@
         * { box-sizing: border-box; font-family: 'Cairo', sans-serif; margin: 0; padding: 0; }
         body { background-color: var(--bg); color: var(--text); padding-bottom: 60px; overflow-x: hidden; }
 
-        /* شريط الأخبار والتنبيهات المتحرك */
         .ticker-wrap {
             background: #051e34; color: #fde68a; font-size: 12px; font-weight: 700;
             padding: 8px 0; overflow: hidden; white-space: nowrap; border-bottom: 1px solid rgba(255,255,255,0.1);
@@ -25,7 +24,6 @@
         .ticker { display: inline-block; animation: marquee 22s linear infinite; }
         @keyframes marquee { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
 
-        /* الهيدر */
         .header {
             background: linear-gradient(135deg, var(--primary), #06243f);
             color: white; padding: 24px 20px 55px; text-align: center;
@@ -40,7 +38,6 @@
         .header h1 { font-size: 24px; font-weight: 900; }
         .header p { font-size: 12px; opacity: 0.9; margin-top: 4px; }
 
-        /* أزرار الاتصال السريع في الهيدر */
         .call-bar { display: flex; justify-content: center; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
         .call-pill {
             background: rgba(255,255,255,0.12); color: white; text-decoration: none;
@@ -49,12 +46,11 @@
         }
         .call-pill:hover { background: var(--secondary); border-color: var(--secondary); }
 
-        /* لوحة الحالة الحية */
         .live-dashboard {
             background: var(--card); width: 92%; max-width: 460px; margin: -32px auto 18px;
             padding: 14px; border-radius: 18px; box-shadow: 0 8px 24px rgba(0,0,0,0.08);
             display: grid; grid-template-columns: repeat(3, 1fr); text-align: center;
-            border-top: 4px solid var(--secondary);
+            border-top: 4px solid var(--secondary); position: relative; z-index: 10;
         }
         .dash-item { border-left: 1px solid #e2e8f0; }
         .dash-item:last-child { border-left: none; }
@@ -66,7 +62,6 @@
         }
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
 
-        /* تذكرة المريض المحفوظة */
         .saved-ticket {
             width: 92%; max-width: 460px; margin: 0 auto 16px;
             background: linear-gradient(135deg, #ecfdf5, #d1fae5);
@@ -79,7 +74,6 @@
 
         .container { width: 92%; max-width: 460px; margin: 0 auto; }
 
-        /* شبكة الأقسام الرئيسية */
         .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 18px; }
         .card-btn {
             background: var(--card); border: 1px solid #e2e8f0; padding: 14px 10px;
@@ -94,7 +88,6 @@
         .card-btn h3 { font-size: 13px; font-weight: 800; color: var(--primary); }
         .card-btn p { font-size: 10px; color: #64748b; margin-top: 2px; }
 
-        /* اللوحات التفاعلية */
         .panel {
             background: var(--card); padding: 20px; border-radius: 20px;
             box-shadow: 0 6px 20px rgba(0,0,0,0.05); display: none;
@@ -111,7 +104,6 @@
             font-size: 13px; outline: none; background: #f8fafc;
         }
 
-        /* كوليكشن الخدمات التفاعلي (Service Collection) */
         .collection-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
         .col-item {
             border: 1.5px solid #e2e8f0; border-radius: 12px; padding: 10px;
@@ -127,7 +119,6 @@
         .col-price { font-size: 12px; font-weight: 900; color: var(--secondary); display: block; margin-top: 2px; }
         .col-desc { font-size: 10px; color: #64748b; display: block; margin-top: 2px; }
 
-        /* الفترات الزمنية */
         .slots-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
         .slot {
             padding: 9px 4px; text-align: center; border: 1.5px solid #cbd5e1;
@@ -142,21 +133,17 @@
             box-shadow: 0 4px 12px rgba(13, 148, 136, 0.25);
         }
 
-        /* المساعد الذكي والأسئلة */
         .bot-box { background: #f8fafc; padding: 14px; border-radius: 12px; border-right: 4px solid var(--secondary); font-size: 13px; line-height: 1.7; margin-bottom: 12px; }
         .quick-replies { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
         .q-btn { background: #e0f2fe; color: #0369a1; border: none; padding: 9px; border-radius: 10px; font-size: 12px; cursor: pointer; font-weight: 700; text-align: right; }
 
-        /* قائمة الأسعار السريعة */
         .service-tag { display: flex; justify-content: space-between; align-items: center; padding: 10px 12px; border: 1px solid #e2e8f0; border-radius: 10px; margin-bottom: 8px; font-size: 12px; background: #f8fafc; }
         .service-tag span { font-weight: 700; color: var(--primary); }
         .service-tag b { color: var(--secondary); font-size: 13px; }
 
-        /* فوتر وبوابة الدكتور */
         .footer { text-align: center; margin-top: 25px; font-size: 11px; color: #64748b; }
         .doc-btn { background: none; border: 1px dashed #94a3b8; color: #475569; padding: 5px 12px; border-radius: 8px; font-size: 11px; cursor: pointer; margin-top: 8px; }
         
-        /* نافذة تحكم الدكتور */
         .doc-modal {
             display: none; background: #0f172a; color: white; padding: 18px;
             border-radius: 16px; margin-top: 15px; text-align: right;
@@ -177,5 +164,13 @@
     <div class="header">
         <div class="badge">البوابة الرقمية الذكية للعيادة</div>
         <h1>عيادة د. مصطفى صقر</h1>
+        <p>احجز موعدك مسبقاً واختر الخدمة المناسبة في ثوانٍ</p>
+        <div class="call-bar">
+            <a href="tel:01275646204" class="call-pill">📞 01275646204</a>
+            <a href="tel:01279049081" class="call-pill">📞 01279049081</a>
+        </div>
+    </div>
 
-        
+    <div class="live-dashboard">
+        <div class="dash-item">
+            <span>حالة العيادة</span>
