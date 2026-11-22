@@ -20,22 +20,20 @@ body{background:#f0f4f8;color:#1e293b;padding-bottom:40px}
 .bar div span{display:block;font-size:11px;color:#64748b}
 .bar div b{font-size:14px;color:#07223b}
 .wrap{width:92%;max-width:460px;margin:0 auto}
-.ticket{background:#ecfdf5;border:1.5px solid #10b981;padding:12px;border-radius:14px;margin-bottom:15px;display:none;position:relative}
-.ticket h4{color:#065f46;font-size:14px;margin-bottom:4px}
-.ticket p{font-size:12px;color:#047857;line-height:1.5}
-.ticket button{position:absolute;top:10px;left:10px;background:#fee2e2;color:#dc2626;border:none;padding:3px 8px;border-radius:6px;font-size:11px;font-weight:bold}
-.tabs{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:15px}
-.tab{background:#fff;border:1.5px solid #cbd5e1;padding:12px;border-radius:14px;text-align:center;cursor:pointer}
+.ticket{background:#ecfdf5;border:1.5px solid #10b981;padding:14px;border-radius:14px;margin-bottom:15px;display:none}
+.ticket h4{color:#065f46;font-size:14px;margin-bottom:5px}
+.ticket p{font-size:12px;color:#047857;line-height:1.6}
+.ticket-actions{margin-top:10px;padding-top:8px;border-top:1px dashed #10b981;display:flex;justify-content:space-between;align-items:center}
+.edit-15-btn{background:#d97706;color:#fff;border:none;padding:6px 12px;border-radius:8px;font-size:11px;font-weight:bold;cursor:pointer}
+.locked-msg{font-size:11px;color:#64748b;font-weight:bold}
+.tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:15px}
+.tab{background:#fff;border:1.5px solid #cbd5e1;padding:12px 6px;border-radius:14px;text-align:center;cursor:pointer}
 .tab.active{border-color:#0d9488;background:#f0fdfa}
-.tab b{display:block;font-size:14px;color:#07223b}
-.tab small{font-size:11px;color:#64748b}
+.tab b{display:block;font-size:13px;color:#07223b}
+.tab small{font-size:10px;color:#64748b}
 .box{background:#fff;padding:18px;border-radius:18px;box-shadow:0 4px 15px rgba(0,0,0,.05);display:none}
 .box.active{display:block}
 .box h2{font-size:16px;color:#07223b;margin-bottom:12px;border-bottom:1px solid #e2e8f0;padding-bottom:8px}
-.fast-clicks{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:14px;background:#f8fafc;padding:10px;border-radius:12px;border:1px dashed #0d9488}
-.fast-clicks-title{grid-column:1/-1;font-size:11px;font-weight:bold;color:#0d9488;margin-bottom:2px}
-.fc-btn{background:#fff;border:1px solid #0d9488;color:#07223b;padding:8px 6px;border-radius:8px;font-size:11px;font-weight:bold;cursor:pointer;text-align:center}
-.fc-btn:active{background:#0d9488;color:#fff}
 .cols{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px}
 .col{border:1.5px solid #cbd5e1;padding:10px;border-radius:10px;cursor:pointer;background:#f8fafc}
 .col.active{border-color:#0d9488;background:#f0fdfa}
@@ -48,11 +46,12 @@ input,select,textarea{width:100%;padding:10px;border:1.5px solid #cbd5e1;border-
 .slot{border:1.5px solid #cbd5e1;padding:8px 2px;text-align:center;border-radius:8px;font-size:11px;font-weight:bold;cursor:pointer}
 .slot.active{background:#07223b;color:#fff;border-color:#07223b}
 .btn{width:100%;background:#0d9488;color:#fff;border:none;padding:12px;border-radius:12px;font-size:14px;font-weight:bold;cursor:pointer;margin-top:8px}
-.qgrid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:10px}
-.qbtn{background:#e0f2fe;color:#0369a1;border:none;padding:8px;border-radius:8px;font-size:12px;font-weight:bold;cursor:pointer}
-.ans{background:#f1f5f9;padding:12px;border-radius:10px;font-size:13px;line-height:1.6;border-right:4px solid #0d9488}
-.row{display:flex;justify-content:space-between;align-items:center;padding:10px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;margin-bottom:6px;font-size:12px}
-.row button{background:#0d9488;color:#fff;border:none;padding:4px 10px;border-radius:6px;font-size:11px;font-weight:bold;cursor:pointer}
+.qgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
+.qbtn{background:#e0f2fe;color:#0369a1;border:1px solid #bae6fd;padding:10px 8px;border-radius:10px;font-size:12px;font-weight:bold;cursor:pointer;text-align:right}
+.qbtn.urgent{background:#fef2f2;color:#b91c1c;border-color:#fecaca}
+.ans{background:#f8fafc;padding:14px;border-radius:12px;font-size:13px;line-height:1.7;border-right:4px solid #0d9488;border:1px solid #e2e8f0;border-right-width:4px}
+.row{display:flex;justify-content:space-between;align-items:center;padding:11px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;margin-bottom:8px;font-size:13px}
+.row button{background:#0d9488;color:#fff;border:none;padding:6px 12px;border-radius:8px;font-size:11px;font-weight:bold;cursor:pointer}
 .features-box{background:linear-gradient(135deg,#07223b,#0f385e);color:#fff;padding:14px;border-radius:16px;margin-top:15px}
 .features-box h3{font-size:14px;color:#fde68a;margin-bottom:8px}
 .feat-item{font-size:12px;margin-bottom:6px;display:flex;align-items:center;gap:6px;color:#e2e8f0}
@@ -94,40 +93,36 @@ input,select,textarea{width:100%;padding:10px;border:1.5px solid #cbd5e1;border-
 </div>
 
 <div class="wrap">
+  <!-- تذكرة الحجز المسبق + شرط التعديل خلال أول 15 دقيقة فقط -->
   <div class="ticket" id="tBox">
-    <button onclick="delTicket()">إلغاء</button>
     <h4>🎟️ تذكرة حجزك المسبق المؤكدة</h4>
     <p id="tText"></p>
+    <div class="ticket-actions" id="tActions"></div>
   </div>
 
+  <!-- التبويبات الرئيسية الثلاثة -->
   <div class="tabs">
-    <div class="tab active" onclick="openTab('b1',this)"><b>📅 الحجز المسبق</b><small>كشف، سونار، رسم قلب</small></div>
-    <div class="tab" onclick="openTab('b2',this)"><b>🔄 تعديل الحجز</b><small>تأجيل أو إلغاء</small></div>
-    <div class="tab" onclick="openTab('b3',this)"><b>🤖 الاستفسارات</b><small>الأجهزة والأسعار</small></div>
-    <div class="tab" onclick="openTab('b4',this)"><b>⚡ خدمات سريعة</b><small>حجز بضغطة واحدة</small></div>
+    <div class="tab active" onclick="openTab('b1',this)"><b>📅 الحجز المسبق</b><small>سجل بيانات حجزك</small></div>
+    <div class="tab" onclick="openTab('b3',this)"><b>🤖 الاستفسارات</b><small>الأجهزة والمواعيد</small></div>
+    <div class="tab" onclick="openTab('b4',this)"><b>⚡ خدمات سريعة</b><small>حساسية، كانيولا، حقن</small></div>
   </div>
 
+  <!-- 1. الحجز المسبق (يدخل مباشرة على ملء البيانات) -->
   <div id="b1" class="box active">
-    <h2>📅 حجز موعد مسبق (واتساب محمود)</h2>
-    
-    <div class="fast-clicks">
-      <div class="fast-clicks-title">⚡ كليكات حجز سريعة (إرسال مباشر بدون كتابة):</div>
-      <button class="fc-btn" onclick="quickWA('السلام عليكم يا أستاذ محمود، عايز أحجز كشف طبي النهاردة عند د. أشرف محمد فولي (100 جنيه).')">🩺 حجز كشف اليوم</button>
-      <button class="fc-btn" onclick="quickWA('السلام عليكم يا أستاذ محمود، عايز أحجز كشف بالسونار / الأشعة التلفزيونية النهاردة.')">📡 حجز سونار / أشعة</button>
-      <button class="fc-btn" onclick="quickWA('السلام عليكم يا أستاذ محمود، محتاج أعمل رسم قلب ECG في العيادة النهاردة.')">💓 حجز رسم قلب ECG</button>
-      <button class="fc-btn" onclick="quickWA('السلام عليكم يا أستاذ محمود، جاي العيادة أعمل اختبار حساسية (20 جنيه) أو استشارة.')">💉 حساسية / استشارة</button>
-    </div>
-
-    <label>أو خصص حجزك بالتاريخ والفترة:</label>
+    <h2>📅 تسجيل بيانات الحجز المسبق</h2>
+    <label>1. اختر نوع الكشف أو الفحص:</label>
     <div class="cols">
       <div class="col active" onclick="setSrv(this,'كشف طبي','100 جنيه')"><b>🩺 كشف طبي</b><span>100 جنيه</span><small>فحص وتشخيص شامل</small></div>
-      <div class="col" onclick="setSrv(this,'كشف + سونار','يُحدد بالعيادة')"><b>📡 سونار وأشعة</b><span>أشعة تلفزيونية</span><small>تشخيص دقيق فوري</small></div>
-      <div class="col" onclick="setSrv(this,'رسم قلب ECG','يُحدد بالعيادة')"><b>💓 رسم قلب ECG</b><span>تخطيط قلب</span><small>جهاز رقمي حديث</small></div>
-      <div class="col" onclick="setSrv(this,'اختبار حساسية / استشارة','20 جنيه / مجاناً')"><b>💉 حساسية / استشارة</b><span>20 ج.م / مجاناً</span><small>إجراء سريع</small></div>
+      <div class="col" onclick="setSrv(this,'كشف + سونار','أشعة تلفزيونية')"><b>📡 سونار وأشعة</b><span>أشعة تلفزيونية</span><small>تشخيص دقيق فوري</small></div>
+      <div class="col" onclick="setSrv(this,'رسم قلب ECG','تخطيط قلب')"><b>💓 رسم قلب ECG</b><span>تخطيط قلب</span><small>جهاز رقمي حديث</small></div>
+      <div class="col" onclick="setSrv(this,'استشارة ومتابعة','مجاناً')"><b>📋 استشارة</b><span>مجاناً</span><small>خلال 10 أيام من الكشف</small></div>
     </div>
-    <input type="text" id="pName" placeholder="اسم المريض بالكامل..." style="margin-bottom:8px">
-    <input type="tel" id="pPhone" placeholder="رقم الموبايل...">
-    <label>التاريخ والفترة:</label>
+    
+    <label>2. بيانات المريض:</label>
+    <input type="text" id="pName" placeholder="اكتب اسم المريض بالكامل..." style="margin-bottom:8px">
+    <input type="tel" id="pPhone" placeholder="رقم الموبايل (واتساب للتأكيد)...">
+    
+    <label>3. اختر التاريخ والفترة المناسبة:</label>
     <input type="date" id="pDate" style="margin-bottom:8px">
     <div class="slots">
       <div class="slot active" onclick="setTime(this,'6:00 - 7:30 م')">6:00 - 7:30 م</div>
@@ -135,9 +130,22 @@ input,select,textarea{width:100%;padding:10px;border:1.5px solid #cbd5e1;border-
       <div class="slot" onclick="setTime(this,'9:00 - 11:00 م')">9:00 - 11:00 م</div>
     </div>
     <button class="btn" onclick="bookNow()">تأكيد الحجز وإرسال لمحمود 🎟️</button>
+    <p style="font-size:11px;color:#64748b;text-align:center;margin-top:8px">ملاحظة: يُسمح بتعديل أو إلغاء بيانات الحجز خلال أول 15 دقيقة فقط من التسجيل.</p>
   </div>
 
-  <div id="b2" class="box">
-    <h2>🔄 تعديل أو إلغاء حجز</h2>
-    <div class="fast-clicks">
-      
+  <!-- 2. قسم الاستفسارات الشامل -->
+  <div id="b3" class="box">
+    <h2>🤖 الاستفسارات ومعلومات العيادة</h2>
+    <div class="ans" id="botOut">أهلاً بك في عيادة د. أشرف محمد فولي. اضغط على أي بند بالأسفل لمعرفة التفاصيل كاملة:</div>
+    <div class="qgrid">
+      <button class="qbtn" onclick="bot('p')">💰 الكشف والوحدات</button>
+      <button class="qbtn" onclick="bot('eq')">📡 الأجهزة المتاحة</button>
+      <button class="qbtn" onclick="bot('h')">⏰ مواعيد تواجد الدكتور</button>
+      <button class="qbtn urgent" onclick="bot('em')">🚨 الحالات المستعجلة</button>
+      <button class="qbtn" style="grid-column:1/-1;text-align:center" onclick="bot('c')">📞 أرقام التواصل والاستقبال</button>
+    </div>
+  </div>
+
+  <!-- 3. الخدمات السريعة (مخفية بالداخل: اختبار حساسية، كانيولا، حقن) -->
+  <div id="b4" class="box">
+    
